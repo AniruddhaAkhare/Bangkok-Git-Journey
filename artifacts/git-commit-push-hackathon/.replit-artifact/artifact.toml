@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "git commit and push hackathon"
+description = "A highly interactive multi-page hackathon website with a cyberpunk Bangkok visual identity, Git-inspired round journey, live countdown, event timeline, multi-step registration flow, and Bangkok grand prize showcase."
+version = "1.0.0"
+id = "artifacts/git-commit-push-hackathon"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20311
+
+[services.development]
+run = "pnpm --filter @workspace/git-commit-push-hackathon run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/git-commit-push-hackathon", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/git-commit-push-hackathon/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20311"
+BASE_PATH = "/"
