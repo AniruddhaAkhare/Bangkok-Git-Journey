@@ -152,6 +152,10 @@
 .terminal-window { border: 1px solid rgba(188,144,255,.28); background: rgba(10,13,18,.88); box-shadow: 0 0 0 1px rgba(255,79,154,.08), 0 25px 80px rgba(0,0,0,.3); }
 .terminal-top { background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.08); }
 .terminal-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.hero-visual { box-shadow: 0 24px 80px rgba(0,0,0,.34), 0 0 55px rgba(255,79,154,.12); }
+.hero-visual::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(135deg, rgba(255,124,76,.16), transparent 35%, rgba(188,144,255,.13)); mix-blend-mode: screen; }
+.hero-terminal-float { position: relative; z-index: 2; margin: -104px 18px 0; }
+.hero-terminal-float .terminal-window { box-shadow: 0 18px 46px rgba(0,0,0,.4), 0 0 0 1px rgba(255,79,154,.08); }
 .grid-dots {
   background-image: radial-gradient(rgba(188,144,255,.35) 1px, transparent 1px);
   background-size: 16px 16px;
@@ -169,6 +173,12 @@
 .thai-corner::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
 .thai-corner::after { right: 10px; bottom: 10px; border-width: 0 1px 1px 0; }
 .prize-sheen { background: linear-gradient(120deg, rgba(255,255,255,0) 20%, rgba(255,255,255,.15) 48%, rgba(255,255,255,0) 72%); background-size: 240% 100%; animation: sheen 7s ease-in-out infinite; }
+.dispatch-stage img { filter: saturate(.88) contrast(1.08); }
+.dispatch-tab { min-height: 0; }
+.dispatch-tab:focus-visible { outline: 2px solid #7ee7d6; outline-offset: 2px; }
+.cultural-strip { box-shadow: 0 24px 70px rgba(0,0,0,.22); }
+.cultural-strip img, .signal-photo img { filter: saturate(.8) contrast(1.08); }
+.signal-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(255,124,76,.2); }
 
 @keyframes reveal { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
 @keyframes blink { 0%, 48% { opacity: 1; } 49%, 100% { opacity: 0; } }
@@ -178,4 +188,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+@media (max-width: 640px) {
+  .hero-terminal-float { margin: -76px 12px 0; }
 }

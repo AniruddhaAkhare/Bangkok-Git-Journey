@@ -10,6 +10,9 @@ import {
 } from 'lucide-react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import NotFound from '@/pages/not-found';
+import bangkokMarketImage from '@assets/bangkok/bangkok-market.jpg';
+import watArunFestivalImage from '@assets/bangkok/wat-arun-festival.jpg';
+import chaoPhrayaImage from '@assets/bangkok/chao-phraya-river.jpg';
 
 const queryClient = new QueryClient();
 
@@ -175,6 +178,89 @@ function TerminalWindow() {
   );
 }
 
+function BangkokDispatches() {
+  const dispatches = [
+    {
+      label: 'market / 01',
+      title: 'The city stays awake.',
+      text: 'Street food, neon signs, and a thousand side quests between commits.',
+      image: bangkokMarketImage,
+      alt: 'A busy Bangkok night market filled with warm lights and food stalls',
+      accent: '#ff7c4c',
+    },
+    {
+      label: 'temple / 02',
+      title: 'Old patterns. New builds.',
+      text: 'Thai craft and modern ideas share the same city grid.',
+      image: watArunFestivalImage,
+      alt: 'Wat Arun illuminated beside the Chao Phraya River at night',
+      accent: '#b990ff',
+    },
+    {
+      label: 'river / 03',
+      title: 'Take the long way.',
+      text: 'The final route follows the river, not the shortest path.',
+      image: chaoPhrayaImage,
+      alt: 'The Chao Phraya River flowing through Bangkok',
+      accent: '#7ee7d6',
+    },
+  ];
+  const [active, setActive] = useState(0);
+  const current = dispatches[active];
+
+  return (
+    <section className="mx-auto max-w-[1240px] px-5 pb-20 sm:px-8 sm:pb-28">
+      <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div className="reveal">
+          <p className="eyebrow mb-4 text-[#7ee7d6]">bangkok field notes</p>
+          <h2 className="font-display text-4xl font-bold tracking-[-.04em] text-[#f5eedf] sm:text-5xl">
+            Build for the<br /><span className="text-[#ff4f9a]">city that moves.</span>
+          </h2>
+        </div>
+        <span className="font-mono-custom text-[10px] uppercase tracking-[.15em] text-[#687386]">live visual feed / {String(active + 1).padStart(2, '0')} — 03</span>
+      </div>
+      <div className="grid gap-4 lg:grid-cols-[1.45fr_.55fr]">
+        <div className="dispatch-stage thai-corner relative min-h-[360px] overflow-hidden rounded-sm border border-[#f5eedf]/15">
+          <img key={current.image} src={current.image} alt={current.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/25 to-transparent" />
+          <div className="absolute inset-0 bg-[#b990ff]/10 mix-blend-color" />
+          <div className="absolute left-5 top-5 flex items-center gap-2 font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#f5eedf]">
+            <span className="blink h-1.5 w-1.5 rounded-full bg-[#7ee7d6]" /> transmission received
+          </div>
+          <div className="absolute bottom-6 left-5 right-5 flex items-end justify-between gap-5 sm:left-8 sm:right-8">
+            <div>
+              <p className="font-mono-custom text-[10px] uppercase tracking-[.16em]" style={{ color: current.accent }}>{current.label}</p>
+              <h3 className="mt-2 max-w-md font-display text-3xl font-bold leading-none text-[#f5eedf] sm:text-5xl">{current.title}</h3>
+              <p className="mt-3 max-w-md text-sm leading-6 text-[#d2c8d3]">{current.text}</p>
+            </div>
+            <span className="hidden h-14 w-14 shrink-0 place-items-center rounded-full border border-[#f5eedf]/35 font-mono-custom text-[10px] text-[#f5eedf] sm:grid">01<br />GCP</span>
+          </div>
+        </div>
+        <div className="grid gap-2">
+          {dispatches.map((dispatch, index) => (
+            <button
+              key={dispatch.label}
+              type="button"
+              onClick={() => setActive(index)}
+              className={`dispatch-tab group flex items-center gap-4 rounded-sm border p-4 text-left transition ${active === index ? 'border-[#f5eedf]/35 bg-[#f5eedf]/[.06]' : 'border-[#f5eedf]/10 bg-[#0d1117]/35 hover:border-[#f5eedf]/25'}`}
+              aria-label={`Show Bangkok visual ${index + 1}`}
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-sm border border-[#f5eedf]/15">
+                <img src={dispatch.image} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+              </span>
+              <span className="min-w-0">
+                <span className="block font-mono-custom text-[10px] uppercase tracking-[.13em]" style={{ color: dispatch.accent }}>{dispatch.label}</span>
+                <span className="mt-1 block truncate font-display text-lg font-bold text-[#f5eedf]">{dispatch.title}</span>
+              </span>
+              <ChevronRight className={`ml-auto shrink-0 transition ${active === index ? 'translate-x-1 text-[#ff7c4c]' : 'text-[#687386]'}`} size={17} />
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer className="content-layer border-t border-[#f5eedf]/10 bg-[#0a0d12]/70">
@@ -252,7 +338,17 @@ function Home() {
               </div>
             </div>
             <div className="reveal delay-2">
-              <TerminalWindow />
+              <div className="hero-visual relative overflow-hidden rounded-sm border border-[#ff4f9a]/35">
+                <img src={bangkokMarketImage} alt="Bangkok night market glowing with food stalls and city lights" className="h-[310px] w-full object-cover opacity-80 sm:h-[370px]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/35 to-[#b990ff]/10" />
+                <div className="absolute left-4 top-4 flex items-center gap-2 font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#f5eedf]">
+                  <span className="blink h-1.5 w-1.5 rounded-full bg-[#ff7c4c]" /> bangkok / after dark
+                </div>
+                <div className="absolute bottom-4 right-4 font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#f5eedf]/80">signal 001 · live</div>
+              </div>
+              <div className="hero-terminal-float">
+                <TerminalWindow />
+              </div>
               <div className="mt-4 flex items-center justify-between font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#687386]">
                 <span>Bangkok / Nagpur / online</span><span className="text-[#ff7c4c]">v.01.26</span>
               </div>
@@ -275,6 +371,8 @@ function Home() {
           </div>
           <div className="grid gap-4 lg:grid-cols-3">{rounds.map((round, index) => <RoundPreview key={round.id} round={round} index={index} />)}</div>
         </section>
+
+        <BangkokDispatches />
 
         <section className="mx-auto max-w-[1240px] px-5 pb-24 sm:px-8 sm:pb-36">
           <div className="relative overflow-hidden rounded-sm border border-[#ff4f9a]/35 bg-[#241527] p-7 sm:p-12">
@@ -313,6 +411,7 @@ function JourneyPage() {
           <div className="mb-4 flex gap-2">{rounds.map((round, index) => <button key={round.id} className={`h-1.5 flex-1 transition-opacity ${selected === round.id ? 'opacity-100' : 'opacity-25'}`} style={{ background: round.accent }} onClick={() => setSelected(round.id)} aria-label={`Show round ${index + 1}`} data-testid={`button-journey-${round.id}`} />)}</div>
           <div className="glow-card min-h-[320px] rounded-sm p-6 sm:p-8" style={{ borderColor: `${active.accent}55` }}>
             <div className="flex items-start justify-between"><span className="font-mono-custom text-xs" style={{ color: active.accent }}>{active.command}</span><span className="font-mono-custom text-[10px] text-[#687386]">0{rounds.findIndex((round) => round.id === active.id) + 1} / 03</span></div>
+             <div className="mt-7 h-32 overflow-hidden rounded-sm border border-[#f5eedf]/10"><img src={active.id === 'push' ? watArunFestivalImage : active.id === 'commit' ? chaoPhrayaImage : bangkokMarketImage} alt={`${active.place} visual`} className="h-full w-full object-cover opacity-75 transition duration-700 hover:scale-105" /></div>
             <h2 className="mt-12 font-display text-3xl font-bold text-[#f5eedf]">{active.title}</h2>
             <p className="mt-2 flex items-center gap-2 font-mono-custom text-[10px] uppercase tracking-[.12em] text-[#8f98a8]"><MapPin size={13} style={{ color: active.accent }} /> {active.place}</p>
             <div className="my-7 hairline" /><p className="text-sm leading-7 text-[#a1a6b2]">{active.description}</p>
@@ -341,6 +440,13 @@ function TimelinePage() {
         </div>
       </div>
       <div className="mt-14 flex flex-col items-start justify-between gap-5 border-y border-[#f5eedf]/10 py-6 sm:flex-row sm:items-center"><div><p className="eyebrow text-[#7ee7d6]">the next gate</p><p className="mt-2 text-sm text-[#a1a6b2]">Bangkok finale starts in</p></div><Countdown compact /><Link href="/register" className="btn-primary min-h-[40px]" data-testid="link-timeline-register">Join the queue <ArrowRight size={14} /></Link></div>
+       <div className="cultural-strip mt-14 overflow-hidden rounded-sm border border-[#f5eedf]/15">
+         <img src={watArunFestivalImage} alt="Wat Arun illuminated along the Chao Phraya River during a Bangkok festival" className="h-48 w-full object-cover opacity-70 sm:h-64" />
+         <div className="flex flex-col justify-between gap-3 border-t border-[#f5eedf]/10 bg-[#17121d]/90 px-5 py-4 sm:flex-row sm:items-center sm:px-7">
+           <span className="font-mono-custom text-[10px] uppercase tracking-[.15em] text-[#b990ff]">cultural layer / temple of dawn</span>
+           <span className="text-sm text-[#c4b8c9]">A route with a little more texture than a calendar.</span>
+         </div>
+       </div>
     </PageFrame>
   );
 }
@@ -374,6 +480,11 @@ function RegisterPage() {
           {step === 3 && <div className="reveal"><p className="eyebrow">03 / branch size</p><label className="mt-8 block font-mono-custom text-xs text-[#d7cfdb]" htmlFor="teamSize">How many on your branch<select id="teamSize" className={inputClass} value={form.teamSize} onChange={(event) => update('teamSize', event.target.value)} data-testid="select-team-size"><option value="1">Just me</option><option value="2">2 contributors</option><option value="3">3 contributors</option><option value="4">4 contributors</option></select></label><div className="mt-6 border border-[#7ee7d6]/20 bg-[#7ee7d6]/[.04] p-4 text-xs leading-5 text-[#a1bdb9]"><Users size={15} className="mb-2 text-[#7ee7d6]" /> Teams can be finalized after registration. Solo branches are welcome.</div><div className="mt-8 flex gap-3"><button type="button" className="btn-secondary flex-1" onClick={() => setStep(2)} data-testid="button-register-back-3">Back</button><button type="submit" className="btn-primary flex-1" data-testid="button-submit-registration">Initialize <Check size={15} /></button></div></div>}
         </form>
         <div className="space-y-5">
+          <div className="signal-photo relative overflow-hidden rounded-sm border border-[#ff4f9a]/35">
+            <img src={watArunFestivalImage} alt="Wat Arun glowing over the Chao Phraya River" className="h-52 w-full object-cover opacity-75" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] to-transparent" />
+            <div className="absolute bottom-4 left-4 font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#f5eedf]">your branch / bangkok-bound</div>
+          </div>
           <div className="reveal delay-2 border-l-2 border-[#ff7c4c] pl-5"><p className="font-mono-custom text-xs text-[#ff7c4c]">why register early?</p><p className="mt-3 text-sm leading-6 text-[#a1a6b2]">Because the best teams start their README before they start their pitch.</p></div>
           <div className="glow-card p-6"><Terminal size={18} className="text-[#b990ff]" /><p className="mt-5 font-mono-custom text-xs leading-6 text-[#a1a6b2]"><span className="text-[#7ee7d6]">const</span> eligibility = <span className="text-[#ff7c4c]">"ambition"</span>;<br /><span className="text-[#7ee7d6]">return</span> eligibility === <span className="text-[#ff7c4c]">"enough"</span>;</p></div>
         </div>
@@ -385,8 +496,9 @@ function RegisterPage() {
 function PrizeVisual() {
   return (
     <div className="prize-sheen relative min-h-[340px] overflow-hidden rounded-sm border border-[#ff4f9a]/45 bg-gradient-to-br from-[#261c42] via-[#302052] to-[#0e202a] p-6 sm:min-h-[450px] sm:p-9">
+      <img src={watArunFestivalImage} alt="Illuminated Wat Arun and the Chao Phraya River at night" className="absolute inset-0 h-full w-full object-cover opacity-55" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#191326] via-[#281b3a]/65 to-[#ff4f9a]/10" />
       <div className="absolute right-[-10%] top-[-12%] h-64 w-64 rounded-full border border-[#ff7c4c]/30 bg-[#ff7c4c]/10 blur-[1px]" /><div className="absolute right-[13%] top-[13%] h-36 w-36 rounded-full border border-[#ff7c4c]/40 bg-[#ff7c4c]/15" />
-      <svg viewBox="0 0 700 260" className="absolute bottom-0 left-0 w-full opacity-80" aria-hidden="true"><path d="M0 230L50 190l42 20 48-73 32 55 65-30 46-55 44 67 54-27 62-72 38 89 71-38 44 39 64-52 49 38 54-41v100H0z" fill="#101c2a" /><path d="M0 230L50 190l42 20 48-73 32 55 65-30 46-55 44 67 54-27 62-72 38 89 71-38 44 39 64-52 49 38 54-41" fill="none" stroke="#7ee7d6" strokeWidth="2" /></svg>
       <div className="relative flex h-full min-h-[280px] flex-col justify-between"><div className="flex items-center justify-between"><span className="font-mono-custom text-[10px] uppercase tracking-[.16em] text-[#7ee7d6]">payload / 001</span><Trophy size={21} className="text-[#ff7c4c]" /></div><div><p className="eyebrow text-[#ff4f9a]">the grand prize</p><h2 className="mt-4 max-w-md font-display text-5xl font-bold leading-[.9] tracking-[-.06em] text-[#f5eedf] sm:text-7xl">Bangkok<br /><span className="text-[#ff7c4c]">unlocked.</span></h2><p className="mt-5 max-w-sm text-sm leading-6 text-[#c4b8c9]">A four-day finale trip for the winning branch — city lights, river air, and the kind of debrief that lasts forever.</p></div></div>
     </div>
   );
