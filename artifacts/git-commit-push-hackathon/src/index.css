@@ -156,6 +156,7 @@
 .hero-visual::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(135deg, rgba(255,124,76,.16), transparent 35%, rgba(188,144,255,.13)); mix-blend-mode: screen; }
 .hero-terminal-float { position: relative; z-index: 2; margin: -104px 18px 0; }
 .hero-terminal-float .terminal-window { box-shadow: 0 18px 46px rgba(0,0,0,.4), 0 0 0 1px rgba(255,79,154,.08); }
+.terminal-stage-tabs { background: rgba(255,255,255,.025); }
 .grid-dots {
   background-image: radial-gradient(rgba(188,144,255,.35) 1px, transparent 1px);
   background-size: 16px 16px;
@@ -179,6 +180,16 @@
 .cultural-strip { box-shadow: 0 24px 70px rgba(0,0,0,.22); }
 .cultural-strip img, .signal-photo img { filter: saturate(.8) contrast(1.08); }
 .signal-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(255,124,76,.2); }
+.quest-panel { box-shadow: 0 24px 70px rgba(0,0,0,.24), inset 0 1px 0 rgba(126,231,214,.05); }
+.quest-node { transition: transform .2s ease, background .2s ease; }
+.quest-node:hover { transform: translateY(-3px); background: rgba(245,238,223,.04); }
+.quest-list-item:focus-visible, .challenge-card:focus-visible { outline: 2px solid #7ee7d6; outline-offset: 2px; }
+.invented-panel { box-shadow: 0 24px 80px rgba(0,0,0,.26), inset 0 1px 0 rgba(126,231,214,.06); }
+.challenge-card { min-height: 275px; box-shadow: 0 18px 52px rgba(0,0,0,.18); }
+.challenge-card:hover { transform: translateY(-3px); box-shadow: 0 22px 60px rgba(188,144,255,.09); }
+.challenge-detail { box-shadow: 0 24px 72px rgba(0,0,0,.25); }
+.stage-photo { box-shadow: 0 25px 90px rgba(0,0,0,.28); }
+.stage-photo img { filter: saturate(.78) contrast(1.12); }
 
 @keyframes reveal { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
 @keyframes blink { 0%, 48% { opacity: 1; } 49%, 100% { opacity: 0; } }
@@ -192,4 +203,5 @@
 
 @media (max-width: 640px) {
   .hero-terminal-float { margin: -76px 12px 0; }
+  .challenge-card { min-height: 235px; }
 }

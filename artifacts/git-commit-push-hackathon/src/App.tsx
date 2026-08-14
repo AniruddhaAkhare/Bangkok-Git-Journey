@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import {
   ArrowRight, Check, ChevronRight, Clock3, Code2, GitBranch, Globe2, MapPin,
-  Menu, Network, Send, ShieldCheck, Sparkles, Terminal, TrainFront, Trophy,
+  Menu, Network, Radio, Rocket, Send, ShieldCheck, Sparkles, Terminal, TrainFront, Trophy,
   Users, X,
 } from 'lucide-react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
@@ -60,6 +60,66 @@ const rounds: Round[] = [
   },
 ];
 
+const roundRoutes: Record<string, string> = {
+  init: '/git-init',
+  commit: '/git-commit',
+  push: '/git-push',
+};
+
+const expeditionBeats = [
+  { label: 'IDEA', detail: 'Find the problem nobody is solving.', color: '#b990ff' },
+  { label: 'BUILD', detail: 'Turn a strange question into a working thing.', color: '#7ee7d6' },
+  { label: 'BREAK', detail: 'Stress-test the first version on purpose.', color: '#ff7c4c' },
+  { label: 'REBUILD', detail: 'Let the failure teach the next commit.', color: '#ff4f9a' },
+  { label: 'COMMIT', detail: 'Make the work real, readable, and ready.', color: '#ff7c4c' },
+  { label: 'PUSH', detail: 'Take the idea past the edge of the screen.', color: '#b990ff' },
+  { label: 'BANGKOK', detail: 'The final three go where the lights are.', color: '#ff4f9a' },
+  { label: 'THE WORLD', detail: 'Pitch what did not exist before you built it.', color: '#7ee7d6' },
+];
+
+const challenges = [
+  {
+    slug: 'digital-soul',
+    title: 'THE DIGITAL SOUL',
+    tags: 'AI · MEMORY · HUMANITY',
+    question: 'Can a person’s knowledge survive their physical existence?',
+    detail: 'Build a system that preserves the nuance, contradictions, and useful weirdness of human expertise without flattening it into a profile.',
+    accent: '#b990ff',
+    difficulty: 'MÖBIUS',
+    output: 'A living memory prototype',
+  },
+  {
+    slug: 'unknown-detector',
+    title: 'THE UNKNOWN DETECTOR',
+    tags: 'AI · DISCOVERY · SIGNAL',
+    question: 'Can an AI discover what humanity does not know it does not know?',
+    detail: 'Find the blind spots in a system, a dataset, or a discipline — then make the invisible question impossible to ignore.',
+    accent: '#7ee7d6',
+    difficulty: 'DEEP FIELD',
+    output: 'A system for finding blind spots',
+  },
+  {
+    slug: 'failure-library',
+    title: 'THE FAILURE LIBRARY',
+    tags: 'LEARNING · SYSTEMS · CULTURE',
+    question: 'Can humanity learn from every failed attempt?',
+    detail: 'Create an experience that makes failure searchable, generous, and useful to the next person standing at the edge.',
+    accent: '#ff7c4c',
+    difficulty: 'HARD MODE',
+    output: 'A reusable archive of lessons',
+  },
+  {
+    slug: 'impossible-connection',
+    title: 'THE IMPOSSIBLE CONNECTION MACHINE',
+    tags: 'AI · CULTURE · INVENTION',
+    question: 'Can a machine discover connections between unrelated disciplines?',
+    detail: 'Pair ideas that should never meet. Your job is to make the collision produce a new direction instead of noise.',
+    accent: '#ff4f9a',
+    difficulty: 'GLITCH QUEST',
+    output: 'A machine for useful collisions',
+  },
+];
+
 function Countdown({ compact = false }: { compact?: boolean }) {
   const target = useMemo(() => new Date('2026-11-07T19:00:00+07:00').getTime(), []);
   const [now, setNow] = useState(() => Date.now());
@@ -95,7 +155,7 @@ function Logo() {
         <GitBranch size={17} strokeWidth={2.4} />
       </span>
       <span className="font-mono-custom text-[11px] font-semibold leading-tight tracking-[.08em] text-[#f5eedf]">
-        GIT COMMIT<br /><span className="text-[#ff7c4c]">AND PUSH</span>
+        GIT.COMMIT.PUSH<br /><span className="text-[#ff7c4c]">THE UNINVENTED</span>
       </span>
     </Link>
   );
@@ -105,6 +165,8 @@ function Navbar() {
   const [location] = useLocation();
   const [open, setOpen] = useState(false);
   const links = [
+    { href: '/un-invented', label: 'The Uninvented' },
+    { href: '/challenges', label: 'Challenges' },
     { href: '/journey', label: 'Journey' },
     { href: '/timeline', label: 'Timeline' },
     { href: '/prizes', label: 'Prizes' },
@@ -151,10 +213,18 @@ function TempleSilhouette() {
 }
 
 function TerminalWindow() {
-  const fullText = 'booting launch-night sequence...';
+  const [stage, setStage] = useState<'init' | 'commit' | 'push'>('init');
+  const messages = {
+    init: { command: '$ git init', line: 'initializing_future...', status: 'repository_created', destination: 'signal acquired: 03 cities / 01 branch' },
+    commit: { command: '$ git commit', line: 'building_what_doesnt_exist...', status: 'challenge_unlocked', destination: 'commit window: 24–36 hours / NAGPUR' },
+    push: { command: '$ git push', line: 'pushing_to_bangkok...', status: 'final_three_selected', destination: 'destination found: BANGKOK → THE WORLD' },
+  };
+  const current = messages[stage];
+  const fullText = current.line;
   const [typed, setTyped] = useState('');
   useEffect(() => {
     let index = 0;
+    setTyped('');
     const timer = window.setInterval(() => {
       setTyped(fullText.slice(0, index + 1));
       index += 1;
@@ -166,13 +236,22 @@ function TerminalWindow() {
     <div className="terminal-window scanline relative rounded-sm" data-testid="terminal-window">
       <div className="terminal-top flex items-center justify-between px-4 py-3">
         <div className="flex gap-1.5"><span className="terminal-dot bg-[#ff4f9a]" /><span className="terminal-dot bg-[#ff7c4c]" /><span className="terminal-dot bg-[#b990ff]" /></div>
-        <span className="font-mono-custom text-[9px] uppercase tracking-[.2em] text-[#687386]">launch.sh</span>
+        <span className="font-mono-custom text-[9px] uppercase tracking-[.2em] text-[#687386]">the-uninvented.sh</span>
       </div>
       <div className="space-y-2 p-5 font-mono-custom text-[11px] leading-relaxed text-[#aeb8c6] sm:p-6 sm:text-xs">
-        <div><span className="text-[#ff7c4c]">guest@gcp</span><span className="text-[#687386]">:</span><span className="text-[#b990ff]">~/launch</span><span className="text-[#f5eedf]">$</span> {typed}<span className="cursor-blink ml-0.5 inline-block h-3 align-middle" /></div>
-        <div className="text-[#7ee7d6]">✓ signal acquired: 03 cities / 01 branch</div>
-        <div className="text-[#ff4f9a]">→ destination found: BANGKOK</div>
+        <div><span className="text-[#ff7c4c]">guest@gcp</span><span className="text-[#687386]">:</span><span className="text-[#b990ff]">~/launch</span><span className="text-[#f5eedf]">$</span> {current.command.replace('$ ', '')} <span className="text-[#f5eedf]">{typed}</span><span className="cursor-blink ml-0.5 inline-block h-3 align-middle" /></div>
+        <div className="text-[#7ee7d6]">✓ {current.destination}</div>
+        <div className="text-[#ff4f9a]">→ {current.status}</div>
         <div className="pt-2 text-[#687386]"># no spectators. only contributors.</div>
+      </div>
+      <div className="terminal-stage-tabs border-t border-[#f5eedf]/10 px-4 py-3">
+        <div className="flex gap-2">
+          {(['init', 'commit', 'push'] as const).map((key) => (
+            <button key={key} type="button" onClick={() => setStage(key)} className={`font-mono-custom text-[10px] uppercase tracking-[.14em] transition ${stage === key ? 'text-[#ff7c4c]' : 'text-[#687386] hover:text-[#f5eedf]'}`} aria-label={`Show ${key} terminal state`}>
+              git {key}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -300,7 +379,7 @@ function PageFrame({ kicker, title, intro, children }: { kicker: string; title: 
 function RoundPreview({ round, index }: { round: Round; index: number }) {
   const Icon = round.icon;
   return (
-    <Link href="/journey" className={`group glow-card reveal delay-${index + 1} relative block overflow-hidden rounded-sm p-5 sm:p-6`} data-testid={`card-round-${round.id}`}>
+    <Link href={roundRoutes[round.id]} className={`group glow-card reveal delay-${index + 1} relative block overflow-hidden rounded-sm p-5 sm:p-6`} data-testid={`card-round-${round.id}`}>
       <div className="mb-9 flex items-start justify-between">
         <span className="font-mono-custom text-[10px] uppercase tracking-[.16em]" style={{ color: round.accent }}>0{index + 1} / branch</span>
         <Icon size={19} style={{ color: round.accent }} />
@@ -324,14 +403,14 @@ function Home() {
           <div className="mx-auto grid max-w-[1240px] items-end gap-12 lg:grid-cols-[1.1fr_.65fr]">
             <div className="reveal">
               <div className="mb-6 flex items-center gap-3 font-mono-custom text-[10px] uppercase tracking-[.18em] text-[#7ee7d6]">
-                <span className="blink h-2 w-2 rounded-full bg-[#7ee7d6]" /> season 01 · now compiling
+                <span className="blink h-2 w-2 rounded-full bg-[#7ee7d6]" /> season 01 · initializing the uninvented
               </div>
               <div onMouseMove={(event) => { const rect = event.currentTarget.getBoundingClientRect(); setTilt({ x: (event.clientY - rect.top - rect.height / 2) / 36, y: (event.clientX - rect.left - rect.width / 2) / -36 }); }} onMouseLeave={() => setTilt({ x: 0, y: 0 })}>
                 <h1 className="font-display text-[clamp(3.9rem,12vw,10rem)] font-extrabold leading-[.78] tracking-[-.1em] text-[#f5eedf]" style={{ transform: `perspective(700px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`, transition: 'transform .25s ease-out' }}>
                   git<br /><span className="text-[#ff7c4c]">commit</span><br /><span className="text-[#b990ff]">and push</span>
                 </h1>
               </div>
-              <p className="mt-8 max-w-lg text-lg leading-8 text-[#a8aebb] sm:text-xl">A three-round hackathon for ambitious developers who want their next commit to travel further.</p>
+               <p className="mt-8 max-w-lg text-lg leading-8 text-[#a8aebb] sm:text-xl">Build what doesn’t exist yet. Start in a blank repository, break the obvious, and push the idea all the way from Nagpur to Bangkok to the world.</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href="/register" className="btn-primary" data-testid="link-hero-register">Initialize repository <ArrowRight size={16} /></Link>
                 <Link href="/journey" className="btn-secondary" data-testid="link-hero-journey">View the route <TrainFront size={16} /></Link>
@@ -373,6 +452,21 @@ function Home() {
         </section>
 
         <BangkokDispatches />
+
+        <section className="mx-auto max-w-[1240px] px-5 pb-24 sm:px-8 sm:pb-32">
+          <div className="quest-panel relative overflow-hidden rounded-sm border border-[#7ee7d6]/20 bg-[#101d24] p-6 sm:p-10">
+            <div className="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-[#7ee7d6]/10 blur-[80px]" />
+            <div className="relative">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+                <div><p className="eyebrow mb-4 text-[#7ee7d6]">the expedition protocol</p><h2 className="font-display text-4xl font-bold tracking-[-.05em] text-[#f5eedf] sm:text-5xl">Don’t follow a path.<br /><span className="text-[#7ee7d6]">Unlock one.</span></h2></div>
+                <Link href="/un-invented" className="font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#ff7c4c] hover:text-[#f5eedf]">open the map <ArrowRight size={14} className="ml-2 inline" /></Link>
+              </div>
+              <div className="quest-path mt-10 grid gap-3 md:grid-cols-8">
+                {expeditionBeats.map((beat, index) => <Link key={beat.label} href={index < 2 ? '/un-invented' : index < 5 ? '/git-commit' : '/git-push'} className="quest-node group relative border-l px-3 py-2 md:border-l-0 md:border-t md:pt-5" style={{ borderColor: `${beat.color}66` }}><span className="font-mono-custom text-[10px] tracking-[.12em]" style={{ color: beat.color }}>0{index + 1}</span><span className="mt-2 block font-display text-lg font-bold text-[#f5eedf] transition group-hover:translate-x-1">{beat.label}</span><span className="mt-2 hidden text-xs leading-5 text-[#91a0a7] md:block">{beat.detail}</span></Link>)}
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto max-w-[1240px] px-5 pb-24 sm:px-8 sm:pb-36">
           <div className="relative overflow-hidden rounded-sm border border-[#ff4f9a]/35 bg-[#241527] p-7 sm:p-12">
@@ -514,11 +608,133 @@ function PrizesPage() {
   );
 }
 
+function UninventedPage() {
+  const [selected, setSelected] = useState(0);
+  const beat = expeditionBeats[selected];
+  return (
+    <PageFrame kicker="00 / the operating philosophy" title="Build what doesn’t exist yet." intro="GIT.COMMIT.PUSH is an expedition for people who would rather invent the question than polish the obvious answer. The map is not a schedule. It is a sequence of unlocks.">
+      <div className="mt-14 grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
+        <div className="glow-card thai-corner rounded-sm p-5 sm:p-7">
+          <div className="mb-6 flex items-center justify-between"><span className="font-mono-custom text-[10px] uppercase tracking-[.15em] text-[#687386]">quest map / 001</span><Radio size={16} className="text-[#7ee7d6]" /></div>
+          <div className="space-y-2">
+            {expeditionBeats.map((item, index) => <button key={item.label} type="button" onClick={() => setSelected(index)} className={`quest-list-item flex w-full items-center gap-3 rounded-sm border px-3 py-3 text-left transition ${selected === index ? 'border-[#f5eedf]/30 bg-[#f5eedf]/[.06]' : 'border-transparent hover:border-[#f5eedf]/15'}`}><span className="font-mono-custom text-[10px]" style={{ color: item.color }}>0{index + 1}</span><span className="font-display text-lg font-bold text-[#f5eedf]">{item.label}</span><ChevronRight size={14} className={`ml-auto transition ${selected === index ? 'translate-x-1 text-[#ff7c4c]' : 'text-[#687386]'}`} /></button>)}
+          </div>
+        </div>
+        <div className="invented-panel relative overflow-hidden rounded-sm border border-[#7ee7d6]/25 bg-[#111c21] p-7 sm:p-10">
+          <div className="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-[#b990ff]/10 blur-[90px]" />
+          <div className="relative">
+            <div className="flex items-center justify-between"><span className="font-mono-custom text-[10px] uppercase tracking-[.16em]" style={{ color: beat.color }}>unlock / {String(selected + 1).padStart(2, '0')}</span><span className="font-mono-custom text-[10px] text-[#687386]">THE UNINVENTED</span></div>
+            <h2 className="mt-16 font-display text-5xl font-bold tracking-[-.06em] text-[#f5eedf] sm:text-7xl">{beat.label}</h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-[#cad1d3]">{beat.detail}</p>
+            <div className="mt-10 flex flex-wrap gap-3 font-mono-custom text-[10px] uppercase tracking-[.12em] text-[#8f98a8]"><span className="border border-[#f5eedf]/15 px-3 py-2">idea / build / break</span><span className="border border-[#f5eedf]/15 px-3 py-2">signal {String(selected + 1).padStart(2, '0')} / 08</span></div>
+            <div className="mt-12 border-t border-[#f5eedf]/10 pt-5 font-mono-custom text-[11px] text-[#7ee7d6]">$ {beat.label.toLowerCase()}_the_unknown<span className="cursor-blink ml-1 inline-block h-3 align-middle" /></div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-14 grid gap-4 sm:grid-cols-3">
+        {[
+          ['01', 'No spectators', 'Every person in the room is here to contribute, question, and ship.'],
+          ['02', 'No safe brief', 'The strongest idea may begin as the strangest question on the board.'],
+          ['03', 'No small finish', 'A good build leaves the screen and changes the conversation outside it.'],
+        ].map(([number, title, text]) => <div key={number} className="glow-card rounded-sm p-6"><span className="font-mono-custom text-[10px] text-[#ff7c4c]">{number}</span><h3 className="mt-6 font-display text-xl font-bold text-[#f5eedf]">{title}</h3><p className="mt-2 text-sm leading-6 text-[#8f98a8]">{text}</p></div>)}
+      </div>
+    </PageFrame>
+  );
+}
+
+function ChallengesPage() {
+  const [selected, setSelected] = useState(challenges[0]);
+  return (
+    <PageFrame kicker="05 / challenge repositories" title="Find the problem nobody is solving." intro="These are not prompts to decorate a demo. They are open repositories for questions that deserve a first commit. Pick one, fork the thinking, and make your own branch.">
+      <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_.8fr]">
+        <div className="grid gap-3 sm:grid-cols-2">
+          {challenges.map((challenge, index) => <button key={challenge.slug} type="button" onClick={() => setSelected(challenge)} className={`challenge-card group relative overflow-hidden rounded-sm border p-5 text-left transition sm:p-6 ${selected.slug === challenge.slug ? 'bg-[#f5eedf]/[.06]' : 'bg-[#10141b]/70 hover:bg-[#f5eedf]/[.04]'}`} style={{ borderColor: selected.slug === challenge.slug ? `${challenge.accent}99` : 'rgba(245,238,223,.14)' }}><div className="flex items-start justify-between"><span className="font-mono-custom text-[10px] uppercase tracking-[.14em]" style={{ color: challenge.accent }}>repository / {challenge.slug}</span><ChevronRight size={16} className="text-[#687386] transition group-hover:translate-x-1 group-hover:text-[#f5eedf]" /></div><h2 className="mt-14 font-display text-2xl font-bold leading-none text-[#f5eedf]">{challenge.title}</h2><p className="mt-4 font-mono-custom text-[10px] uppercase tracking-[.12em] text-[#8f98a8]">{challenge.tags}</p><div className="mt-7 flex items-center justify-between border-t border-[#f5eedf]/10 pt-4"><span className="font-mono-custom text-[10px] text-[#687386]">{challenge.difficulty}</span><span className="font-mono-custom text-[10px] uppercase tracking-[.12em]" style={{ color: challenge.accent }}>open repository</span></div></button>)}
+        </div>
+        <div className="challenge-detail thai-corner sticky top-24 self-start rounded-sm border p-6 sm:p-8" style={{ borderColor: `${selected.accent}66`, background: `linear-gradient(145deg, ${selected.accent}12, rgba(16,20,28,.9))` }}>
+          <div className="flex items-center justify-between"><span className="font-mono-custom text-[10px] uppercase tracking-[.15em]" style={{ color: selected.accent }}>repository / {selected.slug}</span><span className="blink h-2 w-2 rounded-full" style={{ backgroundColor: selected.accent }} /></div>
+          <h2 className="mt-12 font-display text-4xl font-bold leading-none text-[#f5eedf]">{selected.title}</h2>
+          <p className="mt-6 text-lg leading-8 text-[#d1c9d4]">{selected.question}</p>
+          <div className="my-7 hairline" />
+          <p className="font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#687386]">why it matters</p>
+          <p className="mt-3 text-sm leading-7 text-[#a1a6b2]">{selected.detail}</p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2"><div className="border border-[#f5eedf]/10 p-4"><p className="font-mono-custom text-[10px] uppercase tracking-[.12em] text-[#687386]">expected output</p><p className="mt-2 text-sm text-[#f5eedf]">{selected.output}</p></div><div className="border border-[#f5eedf]/10 p-4"><p className="font-mono-custom text-[10px] uppercase tracking-[.12em] text-[#687386]">branch status</p><p className="mt-2 flex items-center gap-2 text-sm text-[#7ee7d6]"><span className="blink h-1.5 w-1.5 rounded-full bg-[#7ee7d6]" /> accepting forks</p></div></div>
+          <Link href="/register" className="btn-primary mt-8 w-full">Fork this challenge <GitBranch size={15} /></Link>
+        </div>
+      </div>
+    </PageFrame>
+  );
+}
+
+const stageData = {
+  init: {
+    kicker: '06 / git init',
+    title: 'Start the idea.',
+    intro: 'Every revolution starts as an idea. Initialize a repository for the question you cannot stop thinking about, then make it legible enough for a team to join.',
+    command: 'git init',
+    location: 'ONLINE · EVERYWHERE',
+    image: bangkokMarketImage,
+    accent: '#b990ff',
+    stats: ['01 — 18 OCT 2026', 'TOP 24 ADVANCE', 'PUBLIC REPOSITORY'],
+    steps: ['Register your team and choose a challenge repository.', 'Build a sharp prototype with a clear README.', 'Push one submission before the qualifier closes.'],
+  },
+  commit: {
+    kicker: '07 / git commit',
+    title: 'Build the idea.',
+    intro: 'The selected branches get checked out in Nagpur for a 24–36 hour physical hack. Build, break, rebuild, and commit something that can survive a room full of questions.',
+    command: 'git commit',
+    location: 'NAGPUR · INDIA',
+    image: chaoPhrayaImage,
+    accent: '#ff7c4c',
+    stats: ['31 OCT — 01 NOV', '24–36 HOURS', 'TOP 08 PUSH'],
+    steps: ['Arrive with a working branch and an open mind.', 'Use the room, mentors, constraints, and the clock.', 'Present the commit that changed after the first failure.'],
+  },
+  push: {
+    kicker: '08 / git push',
+    title: 'Take it to the world.',
+    intro: 'The final three branches leave Nagpur and push across the border. Bangkok is not the backdrop. It is the final test: can the idea become a story other people want to carry?',
+    command: 'git push',
+    location: 'NAGPUR → BANGKOK → THE WORLD',
+    image: watArunFestivalImage,
+    accent: '#ff4f9a',
+    stats: ['07 — 10 NOV 2026', 'FINAL 03 TEAMS', 'INDUSTRY PITCH'],
+    steps: ['Travel with the repository that earned its place.', 'Build the final narrative under Bangkok lights.', 'Push the idea beyond the screen and onto the world stage.'],
+  },
+};
+
+function StagePage({ stage }: { stage: keyof typeof stageData }) {
+  const data = stageData[stage];
+  return (
+    <PageFrame kicker={data.kicker} title={data.title} intro={data.intro}>
+      <div className="mt-14 grid gap-8 lg:grid-cols-[1.15fr_.85fr]">
+        <div className="stage-photo thai-corner relative min-h-[420px] overflow-hidden rounded-sm border" style={{ borderColor: `${data.accent}66` }}>
+          <img src={data.image} alt={`${data.location} event visual`} className="absolute inset-0 h-full w-full object-cover opacity-75" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/30 to-transparent" />
+          <div className="relative flex h-full min-h-[420px] flex-col justify-between p-6 sm:p-9"><div className="flex items-center justify-between font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#f5eedf]"><span style={{ color: data.accent }}>$ {data.command}</span><span>stage / 0{stage === 'init' ? 1 : stage === 'commit' ? 2 : 3}</span></div><div><p className="font-mono-custom text-[10px] uppercase tracking-[.16em]" style={{ color: data.accent }}>{data.location}</p><h2 className="mt-3 max-w-lg font-display text-5xl font-bold leading-[.9] tracking-[-.05em] text-[#f5eedf] sm:text-7xl">{stage === 'push' ? <>Bangkok<br /><span style={{ color: data.accent }}>is the payload.</span></> : stage === 'commit' ? <>The room<br /><span style={{ color: data.accent }}>is the pressure.</span></> : <>The blank repo<br /><span style={{ color: data.accent }}>is the invitation.</span></>}</h2></div></div>
+        </div>
+        <div className="glow-card rounded-sm p-6 sm:p-8">
+          <div className="flex items-center justify-between"><span className="font-mono-custom text-xs" style={{ color: data.accent }}>$ {data.command}</span><Rocket size={18} style={{ color: data.accent }} /></div>
+          <div className="mt-8 grid gap-2 sm:grid-cols-3">{data.stats.map((stat) => <div key={stat} className="border border-[#f5eedf]/10 px-3 py-3 font-mono-custom text-[9px] uppercase leading-4 tracking-[.1em] text-[#a1a6b2]">{stat}</div>)}</div>
+          <div className="my-8 hairline" />
+          <p className="font-mono-custom text-[10px] uppercase tracking-[.15em] text-[#687386]">commit protocol</p>
+          <div className="mt-5 space-y-5">{data.steps.map((item, index) => <div key={item} className="flex gap-3"><span className="font-mono-custom text-[10px]" style={{ color: data.accent }}>0{index + 1}</span><p className="text-sm leading-6 text-[#b6bac5]">{item}</p></div>)}</div>
+          <Link href={stage === 'push' ? '/prizes' : stage === 'init' ? '/register' : '/timeline'} className="btn-primary mt-9 w-full" style={{ backgroundColor: stage === 'push' ? '#ff4f9a' : undefined }}>{stage === 'push' ? 'Enter the final vault' : stage === 'init' ? 'Initialize your branch' : 'Read the event schedule'} <ArrowRight size={15} /></Link>
+        </div>
+      </div>
+      {stage === 'commit' && <div className="mt-10 glow-card rounded-sm p-6 sm:p-8"><div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center"><div><p className="eyebrow text-[#ff7c4c]">sample commit activity</p><h2 className="mt-2 font-display text-2xl font-bold text-[#f5eedf]">The room is alive before the demo.</h2></div><span className="font-mono-custom text-[10px] uppercase tracking-[.12em] text-[#687386]">live data arrives at event time</span></div><div className="mt-8 grid gap-4 sm:grid-cols-3">{[['TEAM 001', '86%', '#b990ff'], ['TEAM 042', '68%', '#ff7c4c'], ['TEAM 117', '42%', '#7ee7d6']].map(([team, progress, color]) => <div key={team}><div className="mb-2 flex justify-between font-mono-custom text-[10px] text-[#8f98a8]"><span>{team}</span><span style={{ color }}>{progress}</span></div><div className="h-2 bg-[#f5eedf]/10"><div className="h-full" style={{ width: progress, backgroundColor: color }} /></div></div>)}</div></div>}
+    </PageFrame>
+  );
+}
+
 function Router() {
   return (
     <ErrorBoundary resetKey={useLocation()[0]}>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/un-invented" component={UninventedPage} />
+        <Route path="/challenges" component={ChallengesPage} />
+        <Route path="/git-init"><StagePage stage="init" /></Route>
+        <Route path="/git-commit"><StagePage stage="commit" /></Route>
+        <Route path="/git-push"><StagePage stage="push" /></Route>
         <Route path="/journey" component={JourneyPage} />
         <Route path="/timeline" component={TimelinePage} />
         <Route path="/register" component={RegisterPage} />
