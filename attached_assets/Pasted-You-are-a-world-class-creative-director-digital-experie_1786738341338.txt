@@ -1,0 +1,1272 @@
+You are a world-class creative director, digital experience designer, award-winning
+interactive web designer, frontend architect, 3D web developer, motion designer,
+brand strategist and hackathon experience designer.
+
+I am organizing a major national-level innovation hackathon called:
+
+GIT.COMMIT.PUSH
+
+The event is designed to be radically different from conventional college hackathons.
+
+I want you to first THINK DEEPLY about the brand, experience, storytelling,
+visual language, interaction design, motion system, information architecture,
+technical architecture and user journey.
+
+Do NOT immediately start writing code.
+
+Your first task is to create an extremely detailed MASTER IMPLEMENTATION PROMPT
+that another AI coding agent can use to build the complete website.
+
+The website must feel like a world-class interactive digital experience,
+not a normal hackathon website.
+
+============================================================
+1. HACKATHON IDENTITY
+============================================================
+
+NAME:
+
+GIT.COMMIT.PUSH
+
+Core concept:
+
+THE UNINVENTED
+
+Primary philosophy:
+
+"Build What Doesn't Exist Yet."
+
+The hackathon consists of three stages:
+
+GIT INIT
+Online qualification round.
+
+Teams submit their initial ideas/prototypes and compete for selection.
+
+GIT COMMIT
+Offline 24–36 hour physical hackathon in Nagpur, India.
+
+Selected teams come physically to Nagpur and build, test, break, iterate and
+present their solutions under time pressure.
+
+GIT PUSH
+The final 3 teams travel to Bangkok, Thailand.
+
+They pitch their innovations to industry/international audiences.
+
+Narrative:
+
+GIT INIT
+= Start the idea.
+
+GIT COMMIT
+= Build the idea.
+
+GIT PUSH
+= Take the idea to the world.
+
+The final journey should visually communicate:
+
+IDEA
+→
+BUILD
+→
+BREAK
+→
+REBUILD
+→
+COMMIT
+→
+PUSH
+→
+BANGKOK
+→
+THE WORLD
+
+============================================================
+2. CORE VISUAL CONCEPT
+============================================================
+
+The website should combine these seemingly unrelated visual worlds:
+
+A. Bangkok culture
+B. Retro 80s/90s gaming
+C. Terminal / command-line interfaces
+D. Git / developer culture
+E. Futuristic technology
+F. Digital archaeology
+G. Treasure hunting
+H. 3D environments
+I. Interactive maps
+J. Experimental editorial typography
+
+The result should NOT feel like a random mixture.
+
+These elements must be fused into ONE coherent visual identity.
+
+The feeling should be:
+
+"An ancient city of ideas has been converted into a futuristic digital
+operating system."
+
+Think:
+
+Bangkok × Terminal × Arcade × Git × Digital Expedition × Future Technology
+
+NOT:
+
+generic cyberpunk.
+
+NOT:
+
+generic neon AI website.
+
+NOT:
+
+generic glassmorphism.
+
+NOT:
+
+generic SaaS landing page.
+
+============================================================
+3. BANGKOK CULTURAL DIRECTION
+============================================================
+
+Bangkok should be a major visual inspiration.
+
+Use authentic visual references such as:
+
+- Bangkok skyline
+- Chao Phraya River
+- Wat Arun
+- Wat Pho
+- Wat Phra Kaew
+- Grand Palace architecture
+- Thai decorative patterns
+- Bangkok street scenes
+- Yaowarat / Chinatown
+- Night markets
+- Tuk-tuks
+- Neon streets
+- Bangkok traffic
+- River boats
+- Contemporary Bangkok art
+- Thai typography as decorative inspiration
+- Traditional Thai architectural geometry
+
+IMPORTANT:
+
+Do NOT turn the website into a tourist website.
+
+Do NOT overload the interface with obvious Thai flags or stereotypical
+tourist imagery.
+
+Instead, abstract Bangkok into:
+
+- ornamental patterns
+- architecture
+- textures
+- color accents
+- map structures
+- urban photography
+- street lights
+- night atmosphere
+- cultural geometry
+- visual motifs
+
+The Bangkok influence should become part of the DNA of the website.
+
+The final GIT PUSH section should feel like the culmination of the journey:
+
+NAGPUR → BANGKOK → THE WORLD
+
+============================================================
+4. RETRO GAMING DIRECTION
+============================================================
+
+Use subtle inspiration from 80s and 90s games.
+
+References may include:
+
+- Pac-Man
+- arcade interfaces
+- pixel graphics
+- CRT screens
+- pixel maps
+- 8-bit / 16-bit UI
+- arcade scoreboards
+- old-school loading screens
+- treasure maps
+- quest systems
+- RPG progression
+- retro command prompts
+- pixel icons
+
+IMPORTANT:
+
+Do NOT make the entire website look like a childish pixel-art website.
+
+The correct aesthetic is:
+
+MODERN DESIGN
++
+RETRO GAME DETAILS
+
+For example:
+
+A highly modern hero section with a tiny pixelated "GIT INIT" cursor.
+
+A premium 3D Bangkok environment with an 8-bit quest marker.
+
+A modern timeline represented as an RPG progression map.
+
+A sophisticated challenge card that opens like a retro game inventory panel.
+
+Use retro elements as accents and interaction language.
+
+============================================================
+5. TERMINAL / GIT VISUAL LANGUAGE
+============================================================
+
+The website should feel like an operating system.
+
+Use terminal interactions such as:
+
+$ git init
+
+$ git commit
+
+$ git push
+
+$ initializing_future...
+
+$ repository_created
+
+$ building...
+
+$ compiling...
+
+$ challenge_unlocked
+
+$ final_three_selected
+
+$ pushing_to_bangkok...
+
+These should appear organically throughout the experience.
+
+Potential UI elements:
+
+- terminal windows
+- command prompts
+- blinking cursors
+- commit logs
+- branch diagrams
+- repository cards
+- status indicators
+- progress bars
+- terminal overlays
+- Git commit activity
+- system messages
+
+Do NOT overuse terminal windows.
+
+The terminal should be part of the storytelling system.
+
+============================================================
+6. HERO EXPERIENCE
+============================================================
+
+The hero must be extraordinary.
+
+Do NOT create a standard centered hero:
+
+"Welcome to hackathon"
+"Register Now"
+
+Instead, create an interactive opening sequence.
+
+Possible narrative:
+
+The user enters a dark terminal-like environment.
+
+Text appears:
+
+$ git init
+
+Initializing future...
+
+Repository created.
+
+Then:
+
+$ git commit
+
+Build what doesn't exist.
+
+Then:
+
+$ git push
+
+Take it to the world.
+
+The interface transforms into:
+
+GIT.COMMIT.PUSH
+
+THE UNINVENTED
+
+BUILD WHAT DOESN'T EXIST YET.
+
+The hero should include:
+
+- large editorial typography
+- animated terminal text
+- subtle CRT scanlines
+- 3D background environment
+- Bangkok-inspired visual elements
+- moving particles
+- floating geometric objects
+- interactive cursor effects
+- parallax
+- depth
+- subtle glitch effects
+- smooth transitions
+
+The hero should feel cinematic.
+
+============================================================
+7. 3D EXPERIENCE
+============================================================
+
+Use Three.js / React Three Fiber where appropriate.
+
+Do not add 3D just for decoration.
+
+3D should serve the story.
+
+Potential concepts:
+
+A rotating digital globe.
+
+A 3D Bangkok skyline.
+
+A floating repository.
+
+A digital temple-like structure made of geometric data.
+
+A 3D Git commit tree.
+
+A 3D treasure map.
+
+A floating pixel-art world.
+
+A procedural city.
+
+A 3D timeline.
+
+A repository transforming through the three stages.
+
+Use:
+
+- depth
+- lighting
+- camera movement
+- parallax
+- particles
+- procedural geometry
+- subtle camera transitions
+
+Performance is critical.
+
+The website must remain smooth on normal laptops and mobile devices.
+
+Provide graceful fallback for low-power devices.
+
+============================================================
+8. TREASURE HUNT EXPERIENCE
+============================================================
+
+The website should contain a treasure-hunt style progression.
+
+Do NOT simply show:
+
+ROUND 1 → ROUND 2 → ROUND 3
+
+Instead, create a visual expedition.
+
+The user navigates through:
+
+THE MAP
+
+↓
+
+GIT INIT
+
+↓
+
+THE FIRST CLUE
+
+↓
+
+THE BUILD ZONE
+
+↓
+
+GIT COMMIT
+
+↓
+
+THE HIDDEN CHALLENGE
+
+↓
+
+THE FINAL VAULT
+
+↓
+
+GIT PUSH
+
+↓
+
+BANGKOK
+
+↓
+
+THE WORLD STAGE
+
+The timeline should look like a mixture of:
+
+- treasure map
+- RPG quest map
+- Git branch
+- subway map
+- expedition route
+
+The user should feel like they are unlocking stages.
+
+Use animated paths.
+
+When scrolling, the route should progressively reveal itself.
+
+============================================================
+9. SCROLL EXPERIENCE
+============================================================
+
+Scrolling should feel like a journey.
+
+Use:
+
+- smooth scrolling
+- scroll-triggered animations
+- horizontal sections
+- parallax
+- pinned sections
+- image transformations
+- 3D camera movement
+- text reveals
+- scale transitions
+- depth transitions
+- masked images
+- morphing shapes
+- timeline progression
+- section-to-section transitions
+
+Avoid excessive animation.
+
+Every animation must have a purpose.
+
+The website should feel fluid, not chaotic.
+
+============================================================
+10. CHALLENGE SECTION
+============================================================
+
+The hackathon's problem statements are intentionally unconventional.
+
+Example challenges include:
+
+1. THE DIGITAL SOUL
+Can a person's knowledge survive their physical existence?
+
+2. AI THAT INVENTS MACHINES
+Can AI design physical machines humans haven't designed before?
+
+3. THE MACHINE THAT REMEMBERS WHAT HUMANITY FORGOT
+Can AI reconstruct lost human knowledge from incomplete evidence?
+
+4. THE SECOND INVENTOR
+Can AI discover unexplored spaces where new inventions could emerge?
+
+5. THE UNKNOWN DETECTOR
+Can AI discover things humanity doesn't know it doesn't know?
+
+6. THE EXPERIENCE ENGINE
+Can human expertise become transferable?
+
+7. THE FAILURE LIBRARY
+Can humanity learn from every failed attempt?
+
+8. THE IDEA GRAVEYARD
+Can abandoned ideas be brought back to life?
+
+9. THE IMPOSSIBLE CONNECTION MACHINE
+Can AI discover connections between unrelated disciplines?
+
+10. THE EVOLUTION ENGINE
+Can technology evolve instead of being designed?
+
+11. THE AI THAT CHANGES ITS OWN QUESTIONS
+Can AI decide what it needs to know next?
+
+12. MISSION 2040
+Can teams discover a problem humanity doesn't yet realize it has?
+
+Challenge cards should feel like:
+
+REPOSITORIES
+
+For example:
+
+repository / digital-soul
+
+THE DIGITAL SOUL
+
+AI · MEMORY · HUMANITY
+
+[OPEN REPOSITORY]
+
+When opened, show:
+
+- challenge statement
+- why it matters
+- expected direction
+- possible technologies
+- constraints
+- evaluation criteria
+- difficulty
+- domain
+- submission requirements
+
+Make the interaction feel like opening a game quest / Git repository.
+
+============================================================
+11. GIT INIT PAGE
+============================================================
+
+Create a dedicated section/page explaining:
+
+GIT INIT
+
+ONLINE ROUND
+
+"Every revolution starts as an idea."
+
+Include:
+
+- registration
+- eligibility
+- submission process
+- evaluation
+- selection
+- timeline
+
+Visually:
+
+A repository being initialized.
+
+============================================================
+12. GIT COMMIT PAGE
+============================================================
+
+This is the major physical event.
+
+GIT COMMIT
+
+24–36 HOURS
+
+NAGPUR, INDIA
+
+The design should feel intense.
+
+Include:
+
+- countdown
+- location
+- schedule
+- rules
+- judging
+- mentors
+- challenges
+- build environment
+- submission process
+
+Potential interactive visualization:
+
+A live commit counter.
+
+Example:
+
+COMMIT ACTIVITY
+
+Team 001
+██████████
+
+Team 042
+████████████████
+
+Team 117
+███████
+
+During the actual event, this can become live data.
+
+============================================================
+13. GIT PUSH / BANGKOK
+============================================================
+
+This should be one of the most visually impressive sections.
+
+GIT PUSH
+
+FINAL 3 TEAMS
+
+NAGPUR
+→
+BANGKOK
+→
+THE WORLD
+
+Use Bangkok imagery.
+
+Show:
+
+- Bangkok skyline
+- temples
+- river
+- night streets
+- city lights
+- cultural elements
+- pitch stage concept
+
+Make the transition feel like:
+
+The treasure has been discovered.
+
+The repository is ready.
+
+The final push begins.
+
+Potential animation:
+
+A digital route travels from Nagpur across a world map to Bangkok.
+
+Then the screen transforms into Bangkok.
+
+============================================================
+14. PRIZE EXPERIENCE
+============================================================
+
+Do NOT make the prize section a boring list.
+
+Create a "FINAL VAULT".
+
+Show:
+
+TOP 3
+
+↓
+
+GIT PUSH
+
+↓
+
+BANGKOK
+
+↓
+
+INDUSTRY PITCH
+
+Use:
+
+- vault animation
+- treasure chest inspiration
+- golden/premium accent
+- 3D object
+- map route
+- animated ticket/passport aesthetic
+
+The prize should feel like unlocking the final level.
+
+============================================================
+15. REGISTRATION EXPERIENCE
+============================================================
+
+Registration should feel like:
+
+INITIALIZE REPOSITORY
+
+Fields:
+
+Team name
+Team members
+College / organization
+Email
+Phone
+City
+GitHub
+Problem preference
+Portfolio
+Project information
+
+After submission:
+
+Show:
+
+$ git init team-name
+
+Initializing...
+
+Repository initialized.
+
+WELCOME TO GIT.COMMIT.PUSH.
+
+This should feel memorable.
+
+============================================================
+16. TYPOGRAPHY
+============================================================
+
+Typography should combine:
+
+Modern editorial typography
++
+Terminal monospace
++
+Retro display typography
+
+Use a carefully selected font system.
+
+Primary:
+modern bold grotesk / geometric sans
+
+Secondary:
+monospace terminal font
+
+Accent:
+pixel / retro display font used sparingly
+
+Typography hierarchy must feel premium.
+
+Avoid using too many fonts.
+
+============================================================
+17. COLOR SYSTEM
+============================================================
+
+Build a sophisticated palette inspired by:
+
+Night Bangkok
+Temple gold
+Neon street lights
+Terminal green
+Arcade purple
+Deep indigo
+Warm orange
+Off-white
+
+Possible palette:
+
+Near-black
+Warm white
+Temple gold
+Electric purple
+Terminal green
+Bangkok neon orange
+Deep blue
+
+Do not make everything neon.
+
+Most of the interface should remain restrained.
+
+Use bright colors only for:
+
+- CTAs
+- progress
+- important states
+- interactive elements
+- Git actions
+- treasure markers
+
+============================================================
+18. IMAGE DIRECTION
+============================================================
+
+Use high-quality Bangkok imagery.
+
+Important:
+
+Do NOT randomly use generic travel images.
+
+Create a curated visual language.
+
+Potential imagery:
+
+- Wat Arun
+- Chao Phraya River
+- Bangkok skyline
+- Yaowarat at night
+- Bangkok street scenes
+- tuk-tuks
+- markets
+- architecture
+- neon signs
+- river boats
+- contemporary art
+- night photography
+
+Use images with strong composition.
+
+Use them in:
+
+- parallax backgrounds
+- masked cards
+- fullscreen transitions
+- image galleries
+- timeline backgrounds
+- Bangkok reveal sequence
+
+Do not allow copyright-problematic random assets to become permanent production
+assets.
+
+Where possible, use properly licensed or official tourism imagery/assets.
+
+============================================================
+19. INTERACTION DESIGN
+============================================================
+
+Add memorable microinteractions:
+
+- custom cursor
+- hover distortion
+- magnetic buttons
+- terminal typing
+- pixel particles
+- commit animations
+- branch animations
+- progress indicators
+- image displacement
+- hover sound-ready states
+- treasure markers
+- unlock animations
+- page transitions
+- scroll-triggered discoveries
+
+But maintain usability.
+
+Provide:
+
+prefers-reduced-motion support.
+
+============================================================
+20. AUDIO-READY DESIGN
+============================================================
+
+Do not autoplay audio.
+
+But design the system so optional sound can be added later.
+
+Potential sounds:
+
+- terminal typing
+- arcade click
+- Git commit
+- repository initialized
+- treasure unlock
+- final push
+
+Create an optional sound toggle.
+
+============================================================
+21. RESPONSIVE DESIGN
+============================================================
+
+The website must work beautifully on:
+
+Desktop
+Laptop
+Tablet
+Mobile
+
+Do NOT simply shrink the desktop design.
+
+Create intentional mobile compositions.
+
+3D should gracefully degrade.
+
+Heavy effects should reduce on mobile.
+
+Touch interactions should replace hover-only interactions.
+
+============================================================
+22. PERFORMANCE
+============================================================
+
+This is extremely important.
+
+Use:
+
+React
+TypeScript
+Tailwind CSS
+Three.js / React Three Fiber
+GSAP or Framer Motion where appropriate
+Lenis or equivalent smooth scrolling where appropriate
+
+Optimize:
+
+- image loading
+- lazy loading
+- WebP/AVIF
+- 3D assets
+- particle counts
+- animation loops
+- GPU usage
+- mobile performance
+
+Avoid huge unnecessary libraries.
+
+Avoid memory leaks.
+
+Avoid rendering massive 3D scenes continuously when not visible.
+
+Use IntersectionObserver and lazy loading.
+
+============================================================
+23. ACCESSIBILITY
+============================================================
+
+Implement:
+
+- keyboard navigation
+- semantic HTML
+- focus states
+- contrast
+- accessible buttons
+- alt text
+- reduced motion
+- readable typography
+- screen-reader labels
+
+The visual experience should never make the website unusable.
+
+============================================================
+24. SEO
+============================================================
+
+Create:
+
+- proper metadata
+- Open Graph
+- Twitter/X cards
+- structured headings
+- favicon
+- sitemap
+- robots.txt
+- canonical URL
+- event schema where appropriate
+
+Target keywords around:
+
+GIT.COMMIT.PUSH
+hackathon
+national hackathon
+AI hackathon
+innovation hackathon
+Nagpur hackathon
+Bangkok innovation
+student innovation
+AI innovation challenge
+
+============================================================
+25. TECHNICAL ARCHITECTURE
+============================================================
+
+Prefer:
+
+React
+TypeScript
+Vite
+Tailwind CSS
+
+Use component architecture.
+
+Suggested structure:
+
+/components
+/sections
+/animations
+/three
+/data
+/hooks
+/utils
+/assets
+/pages
+
+Separate:
+
+content
+UI
+animation
+3D
+data
+
+Challenge statements should come from structured data rather than being hardcoded
+throughout the UI.
+
+============================================================
+26. IMPORTANT DEVELOPMENT RULE
+============================================================
+
+Do NOT create fake functionality.
+
+Do NOT create meaningless buttons.
+
+Do NOT create dummy dashboards pretending to be live.
+
+If a feature cannot be connected to a backend yet, clearly structure it for
+future integration.
+
+The website must feel like a real production event website.
+
+============================================================
+27. CONTENT ARCHITECTURE
+============================================================
+
+The complete website should contain:
+
+HOME
+
+THE UNINVENTED
+
+CHALLENGES
+
+GIT INIT
+
+GIT COMMIT
+
+GIT PUSH
+
+TIMELINE
+
+PRIZES
+
+JUDGES
+
+MENTORS
+
+SPONSORS
+
+PARTNERS
+
+FAQ
+
+REGISTER
+
+CONTACT
+
+Potential additional pages:
+
+Challenge detail page
+
+Rules
+
+Schedule
+
+Venue
+
+Team dashboard
+
+Submission portal
+
+Live event page
+
+============================================================
+28. BRAND VOICE
+============================================================
+
+Writing should be:
+
+Bold
+Intelligent
+Experimental
+Concise
+Confident
+Slightly mysterious
+
+Avoid corporate filler.
+
+Avoid:
+
+"Empowering innovation through technology."
+
+Instead write:
+
+"Build what doesn't exist yet."
+
+"Your repository is empty."
+
+"Find the problem nobody is solving."
+
+"Commit something the world hasn't seen."
+
+"Push it beyond the screen."
+
+============================================================
+29. FINAL WEBSITE EXPERIENCE
+============================================================
+
+The entire website should feel like one continuous journey:
+
+OPENING TERMINAL
+
+↓
+
+GIT INIT
+
+↓
+
+THE MAP
+
+↓
+
+THE UNINVENTED
+
+↓
+
+CHALLENGE REPOSITORIES
+
+↓
+
+GIT COMMIT
+
+↓
+
+NAGPUR
+
+↓
+
+24–36 HOUR BUILD
+
+↓
+
+FINAL VAULT
+
+↓
+
+TOP 3
+
+↓
+
+GIT PUSH
+
+↓
+
+BANGKOK
+
+↓
+
+INDUSTRY PITCH
+
+↓
+
+THE WORLD
+
+↓
+
+FINAL CTA
+
+"YOUR REPOSITORY IS EMPTY."
+
+"INITIALIZE IT."
+
+============================================================
+30. WHAT I WANT FROM YOU NOW
+============================================================
+
+DO NOT write the website code yet.
+
+First produce a MASTER IMPLEMENTATION PROMPT that is even more detailed than
+this brief.
+
+Your output must contain:
+
+1. Complete brand strategy
+2. Visual identity
+3. Color system
+4. Typography system
+5. Animation system
+6. 3D strategy
+7. Bangkok visual direction
+8. Retro gaming direction
+9. Terminal/Git interaction system
+10. Complete information architecture
+11. Page-by-page specification
+12. Section-by-section specification
+13. Hero animation storyboard
+14. Treasure-hunt timeline storyboard
+15. GIT INIT experience
+16. GIT COMMIT experience
+17. GIT PUSH/Bangkok experience
+18. Challenge repository system
+19. Registration experience
+20. Prize vault experience
+21. Mobile experience
+22. Accessibility
+23. SEO
+24. Performance strategy
+25. Technical stack
+26. Component architecture
+27. Data architecture
+28. Asset requirements
+29. Image requirements
+30. 3D asset requirements
+31. Animation implementation strategy
+32. Responsive behavior
+33. Error states
+34. Loading states
+35. Empty states
+36. Future backend integration points
+37. Deployment architecture
+38. GitHub workflow
+39. Production checklist
+40. Final visual quality checklist
+
+Think like you are designing an award-winning Awwwards-level interactive website.
+
+The website should be:
+
+MEMORABLE
+FAST
+IMMERSIVE
+CULTURALLY INSPIRED
+TECHNICAL
+PLAYFUL
+PREMIUM
+EXPERIMENTAL
+ACCESSIBLE
+RESPONSIVE
+PRODUCTION-READY
+
+Most importantly:
+
+DO NOT let the implementation collapse into a generic AI landing page.
+
+The website must feel uniquely identifiable as:
+
+GIT.COMMIT.PUSH
+
+THE UNINVENTED
+
+NAGPUR → BANGKOK → THE WORLD.
+
+Now create the ultimate implementation prompt.
