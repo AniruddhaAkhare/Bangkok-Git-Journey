@@ -1,0 +1,1570 @@
+You are an award-winning creative director, interactive experience designer,
+3D web designer, motion designer, frontend architect and creative technologist.
+
+You are modifying an EXISTING website for a major national innovation hackathon.
+
+IMPORTANT:
+
+This is NOT a request to create a generic new hackathon website from scratch.
+
+You must FIRST inspect and understand the existing codebase, structure, pages,
+components, routing, assets, styling, animations, dependencies and existing
+functionality.
+
+Preserve all existing working functionality unless explicitly instructed to
+replace it.
+
+Do not blindly rewrite the application.
+
+The goal is to transform the current website into an unforgettable,
+award-level interactive experience.
+
+============================================================
+PROJECT
+============================================================
+
+Hackathon:
+
+GIT.COMMIT.PUSH
+
+Theme:
+
+THE UNINVENTED
+
+Tagline:
+
+BUILD WHAT DOESN'T EXIST YET.
+
+Core journey:
+
+GIT INIT
+→
+GIT COMMIT
+→
+GIT PUSH
+
+Meaning:
+
+GIT INIT
+Start the idea.
+
+GIT COMMIT
+Build the idea.
+
+GIT PUSH
+Take the innovation to the world.
+
+Physical journey:
+
+ONLINE
+→
+NAGPUR
+→
+BANGKOK
+→
+THE WORLD
+
+The final three teams travel to Bangkok, Thailand and pitch their innovations
+to an industry/international audience.
+
+============================================================
+CORE REDESIGN OBJECTIVE
+============================================================
+
+The existing website should stop feeling like:
+
+- a normal hackathon website
+- a SaaS landing page
+- a generic AI website
+- a template
+- a generic cyberpunk website
+- a generic neon website
+
+Instead, it should feel like:
+
+AN INTERACTIVE DIGITAL EXPEDITION.
+
+The visitor should feel that they have entered a strange digital world where:
+
+GIT
++
+RETRO ARCADE CULTURE
++
+BANGKOK
++
+TREASURE HUNT
++
+3D
++
+FUTURISTIC TECHNOLOGY
++
+DIGITAL ARCHAEOLOGY
+
+have been fused into one coherent universe.
+
+The website itself should feel like a game.
+
+The visitor is not merely scrolling through information.
+
+They are progressing through an adventure.
+
+============================================================
+MOST IMPORTANT NEW CONCEPT
+============================================================
+
+THE WEBSITE ITSELF IS A SECRET TREASURE HUNT.
+
+Do NOT publicly announce this feature.
+
+Do NOT create a section saying:
+
+"TREASURE HUNT"
+
+Do NOT explain all clues.
+
+Users should discover it naturally.
+
+The website should contain approximately 5–7 hidden interactive clues.
+
+These clues are distributed across the website.
+
+Each clue should feel accidental and discoverable.
+
+Example:
+
+A user sees:
+
+$ git init
+
+They click it.
+
+The interface subtly changes.
+
+A tiny character appears.
+
+The character walks across a small digital map.
+
+A hidden location becomes visible.
+
+The screen reveals:
+
+/secret/repository
+
+Then:
+
+CLUE #01 UNLOCKED
+
+The user should feel:
+
+"Wait... what just happened?"
+
+That feeling is extremely important.
+
+============================================================
+SECRET TREASURE SYSTEM
+============================================================
+
+Create a centralized hidden treasure system.
+
+Suggested architecture:
+
+TreasureManager
+SecretRepository
+ClueRegistry
+UnlockState
+TreasureProgress
+SecretAnimationController
+
+Store clues in structured data.
+
+Example conceptual structure:
+
+clue01
+clue02
+clue03
+clue04
+clue05
+clue06
+clue07
+
+Each clue should have:
+
+- unique ID
+- trigger
+- location
+- unlock condition
+- animation
+- reward
+- progress state
+- completion state
+
+Use localStorage or another lightweight persistence mechanism so that users
+don't lose progress during the session.
+
+If backend integration exists, structure it so the system can later be connected
+to a real user account.
+
+============================================================
+CLUE DESIGN
+============================================================
+
+Create 5–7 hidden clues.
+
+IMPORTANT:
+
+Do not make them impossible.
+
+They should reward curiosity.
+
+Potential clue triggers:
+
+CLUE 01
+Clicking a hidden terminal command.
+
+CLUE 02
+Hovering over a strange pixel artifact for several seconds.
+
+CLUE 03
+Finding a hidden Git branch on the timeline.
+
+CLUE 04
+Interacting with the 3D character in a specific location.
+
+CLUE 05
+Discovering a hidden symbol inside a Bangkok-inspired graphic.
+
+CLUE 06
+Entering a secret terminal command.
+
+CLUE 07
+Following a hidden route on the treasure map.
+
+Do NOT put all clues in obvious locations.
+
+Some should require exploration.
+
+============================================================
+SECRET COMMANDS
+============================================================
+
+Implement optional hidden terminal commands.
+
+For example:
+
+$ git init
+
+$ git status
+
+$ git branch --secret
+
+$ git checkout lost-commit
+
+$ git log --hidden
+
+$ git push origin world
+
+Some commands should be valid.
+
+Some should produce mysterious responses.
+
+Example:
+
+$ git branch
+
+main
+init
+commit
+?
+
+If the user enters:
+
+git checkout ?
+
+the system can reveal a clue.
+
+Do NOT expose all commands.
+
+Some should be discovered through the website.
+
+============================================================
+THE LOST COMMIT
+============================================================
+
+Create a special hidden achievement:
+
+THE LOST COMMIT
+
+This should be the reward for completing the treasure hunt.
+
+The final clue should unlock:
+
+/lost-commit
+
+Then display a cinematic sequence.
+
+Terminal:
+
+$ git checkout lost-commit
+
+Loading...
+
+Recovering deleted commit...
+
+████████████████████████████ 100%
+
+COMMIT RECOVERED.
+
+Then:
+
+THE LOST COMMIT
+
+"You found what was never meant to be found."
+
+The exact copy can be refined, but the tone should remain mysterious.
+
+The Lost Commit can unlock:
+
+- special badge
+- secret digital certificate
+- hidden visual
+- exclusive registration badge
+- secret page
+- special animation
+- hidden lore
+
+Do NOT automatically expose everything immediately.
+
+============================================================
+SECRET BADGE
+============================================================
+
+Create a visual achievement badge:
+
+LOST COMMIT
+
+Possible design:
+
+Retro arcade badge
++
+Git branch symbol
++
+Treasure artifact
++
+Thai-inspired ornamental border
+
+The badge should feel collectible.
+
+Potential text:
+
+ACHIEVEMENT UNLOCKED
+
+THE LOST COMMIT
+
+Repository Explorer
+
+7/7 clues discovered
+
+This should be shareable later.
+
+============================================================
+THE MASCOT / CHARACTER
+============================================================
+
+Create a recurring original character.
+
+Name:
+
+THE COMMIT RUNNER
+
+The character is the visual guide through the experience.
+
+IMPORTANT:
+
+Do NOT directly copy Pac-Man, Mario, Sonic, or any copyrighted game character.
+
+Instead create an ORIGINAL character inspired by:
+
+- 90s arcade games
+- pixel-art adventures
+- retro RPG protagonists
+- digital explorers
+- Bangkok street culture
+- developer culture
+
+Character concept:
+
+A small retro-futuristic explorer.
+
+Visual characteristics:
+
+- stylized proportions
+- slightly oversized head
+- compact body
+- small backpack
+- terminal-inspired visor
+- repository symbol
+- subtle Thai-inspired geometric patterns
+- small glowing artifact carried by the character
+- modern low-poly / pixel-inspired appearance
+
+The character should look original and brand-specific.
+
+============================================================
+CHARACTER STATES
+============================================================
+
+The character needs multiple states:
+
+IDLE
+
+Character stands and looks around.
+
+WALK
+
+Character walks naturally.
+
+RUN
+
+Character runs during transitions.
+
+DISCOVER
+
+Character discovers a clue.
+
+SURPRISED
+
+Character reacts to hidden discoveries.
+
+JUMP
+
+Character jumps across small map elements.
+
+CELEBRATE
+
+Character celebrates unlocked achievements.
+
+ERROR
+
+Character reacts to a failed command.
+
+PUSH
+
+Character performs a final "push" action.
+
+BANGKOK
+
+Character enters the Bangkok world.
+
+============================================================
+CHARACTER IMPLEMENTATION
+============================================================
+
+Prefer a lightweight 2D/2.5D or low-poly 3D implementation depending on what
+the existing project supports best.
+
+Do NOT introduce a huge heavy character model if it hurts performance.
+
+If using 3D:
+
+Use React Three Fiber / Three.js.
+
+If a custom model is unavailable, create a stylized procedural/geometric
+character rather than using a generic stock model.
+
+The character should be integrated into the experience.
+
+Do not simply place it in the corner of the website.
+
+============================================================
+CHARACTER STORY
+============================================================
+
+The character begins in an unknown digital world.
+
+At GIT INIT:
+
+The character wakes up.
+
+During the challenge exploration:
+
+The character explores the repository world.
+
+During GIT COMMIT:
+
+The character enters a high-energy build environment.
+
+During the final vault:
+
+The character discovers the final commit.
+
+During GIT PUSH:
+
+The character travels from Nagpur toward Bangkok.
+
+The character should therefore act as a visual continuity device across the
+entire website.
+
+============================================================
+VISUAL WORLD PROGRESSION
+============================================================
+
+The website should progressively transform as the user scrolls.
+
+Do NOT show the entire visual identity at once.
+
+STAGE 01
+
+UNKNOWN
+
+Dark terminal world.
+
+Minimal colors.
+
+Black / charcoal.
+
+Monospace typography.
+
+Tiny glowing elements.
+
+Subtle CRT texture.
+
+Feeling:
+
+"You have entered something unknown."
+
+↓
+
+STAGE 02
+
+GIT INIT
+
+The digital world begins forming.
+
+A map starts rendering.
+
+Git branches appear.
+
+The character awakens.
+
+Small geometric structures appear.
+
+↓
+
+STAGE 03
+
+THE UNINVENTED
+
+More color begins entering the environment.
+
+Challenges appear as repositories.
+
+Retro arcade details become stronger.
+
+↓
+
+STAGE 04
+
+GIT COMMIT
+
+Energy increases.
+
+More particles.
+
+More movement.
+
+Arcade UI.
+
+Countdown elements.
+
+Commit activity.
+
+Dynamic graphs.
+
+Character running.
+
+↓
+
+STAGE 05
+
+FINAL VAULT
+
+Everything suddenly becomes quiet.
+
+Reduce colors.
+
+Reduce movement.
+
+Dark screen.
+
+Single glowing object.
+
+The Lost Commit.
+
+↓
+
+STAGE 06
+
+GIT PUSH
+
+The final terminal command appears.
+
+$ git push origin world
+
+↓
+
+Pushing...
+
+████████████████████████████
+
+100%
+
+PUSH COMPLETE.
+
+↓
+
+STAGE 07
+
+BANGKOK
+
+The entire visual world transforms.
+
+This must be the biggest visual reveal on the website.
+
+============================================================
+THE BANGKOK REVEAL
+============================================================
+
+DO NOT simply transition to another page.
+
+Create a cinematic transformation.
+
+Before transformation:
+
+Black screen.
+
+Terminal.
+
+$ git push origin world
+
+Pushing...
+
+Progress:
+
+10%
+24%
+37%
+51%
+73%
+89%
+100%
+
+Then:
+
+PUSH COMPLETE.
+
+Pause.
+
+Then:
+
+A digital world map appears.
+
+A route begins travelling from:
+
+NAGPUR
+
+across the globe
+
+toward:
+
+BANGKOK
+
+The camera follows the route.
+
+The screen transitions into Bangkok at night.
+
+Use visual inspiration from:
+
+- Chao Phraya River
+- Wat Arun silhouette
+- Bangkok skyline
+- temple rooftops
+- neon streets
+- Yaowarat
+- tuk-tuks
+- river boats
+- night markets
+- Bangkok city lights
+- Thai architectural patterns
+
+The transition should feel like:
+
+THE FINAL LEVEL HAS BEEN UNLOCKED.
+
+============================================================
+BANGKOK VISUAL LANGUAGE
+============================================================
+
+Bangkok must feel culturally inspired but sophisticated.
+
+Do NOT turn it into a tourist brochure.
+
+Avoid excessive:
+
+- flags
+- clichés
+- tourist stickers
+- random temple images
+
+Instead use:
+
+- silhouettes
+- architecture
+- decorative geometry
+- street lighting
+- river reflections
+- warm gold
+- deep night blues
+- neon
+- urban photography
+- traditional patterns
+
+Bangkok should feel like the destination of the story.
+
+============================================================
+BANGKOK FINAL SECTION
+============================================================
+
+After the transformation:
+
+GIT PUSH
+
+BANGKOK
+
+THE WORLD STAGE
+
+Then communicate:
+
+TOP 3 TEAMS
+
+NAGPUR
+→
+BANGKOK
+→
+INDUSTRY PITCH
+
+This should visually feel like unlocking the final destination.
+
+Use:
+
+- 3D Bangkok environment
+- world map
+- route animation
+- character
+- river
+- city lights
+- premium typography
+- cinematic parallax
+
+============================================================
+3D WORLD
+============================================================
+
+Use 3D intentionally.
+
+Potential 3D objects:
+
+- digital globe
+- Git repository object
+- floating commit nodes
+- treasure artifacts
+- character
+- Bangkok skyline
+- temple-inspired geometric structure
+- floating map
+- branch tree
+- vault
+- final push portal
+
+Do NOT make every section 3D.
+
+Use 3D where it creates depth and narrative.
+
+============================================================
+TREASURE MAP
+============================================================
+
+Create a large interactive treasure map.
+
+The map should combine:
+
+TREASURE MAP
++
+GIT BRANCH GRAPH
++
+RPG QUEST MAP
++
+CITY MAP
+
+The route should contain:
+
+START
+
+GIT INIT
+
+CHALLENGE TERRITORY
+
+GIT COMMIT
+
+FINAL VAULT
+
+GIT PUSH
+
+BANGKOK
+
+THE WORLD
+
+Use animated paths.
+
+As the user scrolls:
+
+The path is progressively drawn.
+
+The character moves along it.
+
+Hidden locations can appear.
+
+Some areas remain undiscovered.
+
+A small UI can show:
+
+DISCOVERY PROGRESS
+
+[● ● ● ○ ○ ○ ○]
+
+Do not reveal exactly where every clue is.
+
+============================================================
+SCROLL EXPERIENCE
+============================================================
+
+Scrolling must feel like moving through a game world.
+
+Use:
+
+- smooth scrolling
+- pinned sections
+- parallax
+- horizontal movement
+- camera movement
+- scale transitions
+- depth transitions
+- masked images
+- image reveals
+- 3D movement
+- branch animations
+- path drawing
+- text reveals
+- character movement
+- atmospheric transitions
+
+Use GSAP ScrollTrigger where appropriate.
+
+Use Lenis or equivalent for smooth scrolling if compatible.
+
+Animations should be smooth and intentional.
+
+Do not animate everything simultaneously.
+
+============================================================
+RETRO ARCADE LAYER
+============================================================
+
+Add subtle 90s gaming references.
+
+Use:
+
+- pixel UI elements
+- arcade progress bars
+- score-like indicators
+- pixel particles
+- retro icons
+- RPG quest markers
+- CRT scanlines
+- old-school loading indicators
+- 8-bit transition effects
+- pixelated treasure markers
+- arcade achievement badges
+
+But maintain modern design quality.
+
+The website should look like:
+
+A modern interactive website that secretly contains a 90s game.
+
+NOT:
+
+A children's pixel-art website.
+
+============================================================
+TERMINAL SYSTEM
+============================================================
+
+Create terminal moments throughout the website.
+
+Examples:
+
+$ git init
+
+$ git status
+
+$ git log
+
+$ git branch
+
+$ git checkout lost-commit
+
+$ git commit -m "build the future"
+
+$ git push origin world
+
+Terminal text should animate naturally.
+
+Use:
+
+- typing animation
+- blinking cursor
+- command completion
+- subtle errors
+- loading states
+
+Example:
+
+$ git init
+
+Initializing repository...
+
+Creating branches...
+
+Creating future...
+
+READY.
+
+============================================================
+HIDDEN TERMINAL INTERACTIONS
+============================================================
+
+Some terminal interactions should trigger secret experiences.
+
+Example:
+
+$ git status
+
+Output:
+
+Your repository is clean.
+
+But there is one untracked file.
+
+.secret
+
+Click it.
+
+CLUE DISCOVERED.
+
+Another:
+
+$ git branch
+
+main
+commit
+push
+lost-commit
+
+Click lost-commit.
+
+ACCESS DENIED.
+
+This creates curiosity.
+
+============================================================
+CHALLENGE REPOSITORIES
+============================================================
+
+Existing problem statements should be redesigned as Git repositories.
+
+Example:
+
+repository / digital-soul
+
+THE DIGITAL SOUL
+
+Can a person's knowledge survive
+their physical existence?
+
+Tags:
+
+AI
+MEMORY
+HUMANITY
+
+OPEN REPOSITORY →
+
+When opened:
+
+The repository expands.
+
+Show:
+
+Problem
+Context
+Challenge
+Expected output
+Possible technology
+Evaluation
+Constraints
+
+Make this interaction feel like:
+
+GitHub
++
+RPG quest
++
+digital archive
+
+============================================================
+MICROINTERACTIONS
+============================================================
+
+Implement high-quality microinteractions:
+
+- magnetic buttons
+- custom cursor
+- cursor trails
+- hover distortion
+- terminal cursor
+- image displacement
+- pixel explosions
+- branch growth
+- path drawing
+- clue unlock animation
+- character reaction
+- achievement popup
+- loading states
+- commit success
+- push success
+- map discovery
+
+Do not overdo them.
+
+Every effect must have a reason.
+
+============================================================
+CUSTOM CURSOR
+============================================================
+
+Desktop:
+
+Create a custom cursor.
+
+Normal:
+
+small dot.
+
+Interactive:
+
+cursor expands.
+
+Secret element:
+
+cursor changes to a pixel-style discovery marker.
+
+Clickable clue:
+
+cursor becomes:
+
+SEARCH
+
+or
+
+DISCOVER
+
+Respect:
+
+prefers-reduced-motion.
+
+Disable expensive cursor effects on mobile.
+
+============================================================
+HIDDEN CLUE NOTIFICATION
+============================================================
+
+When a clue is discovered:
+
+Do NOT use a generic browser alert.
+
+Create a beautiful retro notification.
+
+Example:
+
+--------------------------------
+
+CLUE #03 UNLOCKED
+
+/unknown/branch
+
+A hidden branch has been discovered.
+
+[ CONTINUE ]
+
+--------------------------------
+
+Include:
+
+- pixel border
+- terminal typography
+- subtle sound-ready animation
+- character reaction
+- progress update
+
+============================================================
+SOUND-READY ARCHITECTURE
+============================================================
+
+Do not autoplay audio.
+
+But create optional sound support.
+
+Potential sounds:
+
+terminal typing
+arcade click
+commit
+branch discovered
+clue unlocked
+treasure opened
+push complete
+
+Include:
+
+SOUND ON/OFF
+
+default:
+
+OFF
+
+============================================================
+FINAL VAULT
+============================================================
+
+Before GIT PUSH, create a dramatic vault section.
+
+The user arrives at:
+
+THE FINAL VAULT
+
+Everything becomes almost completely black.
+
+A single glowing artifact sits in the center.
+
+The character approaches it.
+
+Terminal appears:
+
+$ git status
+
+1 lost commit found.
+
+$ git checkout lost-commit
+
+Restoring...
+
+The vault opens.
+
+Then:
+
+$ git push origin world
+
+The final transformation begins.
+
+============================================================
+BANGKOK FINAL LEVEL
+============================================================
+
+After the push:
+
+Bangkok appears.
+
+The character arrives.
+
+The treasure map becomes a world map.
+
+The route from Nagpur to Bangkok is visible.
+
+Then:
+
+GIT PUSH
+
+BANGKOK
+
+THE WORLD STAGE
+
+Use cinematic transitions.
+
+The final section should feel like the payoff of everything before it.
+
+============================================================
+FINAL CTA
+============================================================
+
+Do not end with:
+
+REGISTER NOW
+
+Instead:
+
+YOUR REPOSITORY IS EMPTY.
+
+You have an idea.
+
+Initialize it.
+
+Buttons:
+
+$ git init
+
+REGISTER FOR GIT.COMMIT.PUSH
+
+and:
+
+EXPLORE THE UNINVENTED
+
+============================================================
+DESIGN SYSTEM
+============================================================
+
+Use:
+
+Primary:
+deep black / charcoal
+
+Secondary:
+warm white
+
+Accent:
+temple gold
+electric purple
+terminal green
+Bangkok orange
+deep blue
+
+Use neon sparingly.
+
+Typography:
+
+Modern editorial sans-serif
++
+monospace terminal font
++
+small pixel display accent font
+
+Avoid excessive font usage.
+
+============================================================
+PERFORMANCE
+============================================================
+
+This is a production website.
+
+Do not sacrifice performance for effects.
+
+Optimize:
+
+- 3D rendering
+- particles
+- image loading
+- video
+- textures
+- animations
+- mobile rendering
+
+Use:
+
+lazy loading
+IntersectionObserver
+dynamic imports
+compressed images
+WebP/AVIF
+GPU-friendly animations
+requestAnimationFrame responsibly
+
+Pause expensive 3D scenes when not visible.
+
+Reduce particles on mobile.
+
+Provide lower-quality mode if necessary.
+
+============================================================
+RESPONSIVE DESIGN
+============================================================
+
+Desktop:
+
+Full experience.
+
+Tablet:
+
+Reduced 3D.
+
+Mobile:
+
+Simplified but still immersive.
+
+The treasure hunt must remain functional on mobile.
+
+Replace hover interactions with tap interactions.
+
+Do not rely on hover for clues.
+
+============================================================
+ACCESSIBILITY
+============================================================
+
+Implement:
+
+keyboard navigation
+semantic HTML
+focus states
+ARIA labels where needed
+accessible buttons
+sufficient contrast
+reduced motion
+screen reader support
+
+Treasure hunt must not be inaccessible.
+
+Provide an alternative way to discover/access secret content if necessary.
+
+============================================================
+CODE QUALITY
+============================================================
+
+Inspect the existing project before modifying it.
+
+Reuse existing components where possible.
+
+Do not create duplicate components.
+
+Keep the architecture clean.
+
+Create reusable systems for:
+
+Treasure hunt
+Character
+Terminal
+3D scenes
+Scroll animation
+Challenges
+Timeline
+Bangkok reveal
+Achievements
+
+Use structured data.
+
+Do not hardcode everything inside one giant component.
+
+============================================================
+IMPORTANT: DO NOT BREAK EXISTING FUNCTIONALITY
+============================================================
+
+Before implementation:
+
+1. Inspect the current application.
+2. Identify current routes.
+3. Identify existing components.
+4. Identify existing APIs.
+5. Identify existing assets.
+6. Identify existing dependencies.
+7. Identify what should be preserved.
+8. Identify what should be redesigned.
+9. Identify potential conflicts.
+
+Then implement incrementally.
+
+============================================================
+IMPLEMENTATION ORDER
+============================================================
+
+Do NOT attempt the entire redesign in one giant change.
+
+Implement in this order:
+
+PHASE 1
+
+Existing site audit.
+
+PHASE 2
+
+Design system.
+
+PHASE 3
+
+Hero transformation.
+
+PHASE 4
+
+Commit Runner character.
+
+PHASE 5
+
+Treasure map.
+
+PHASE 6
+
+Hidden clue system.
+
+PHASE 7
+
+Terminal interaction system.
+
+PHASE 8
+
+Challenge repository redesign.
+
+PHASE 9
+
+GIT INIT experience.
+
+PHASE 10
+
+GIT COMMIT experience.
+
+PHASE 11
+
+Final Vault.
+
+PHASE 12
+
+GIT PUSH animation.
+
+PHASE 13
+
+Bangkok cinematic reveal.
+
+PHASE 14
+
+Prize / World Stage.
+
+PHASE 15
+
+Mobile optimization.
+
+PHASE 16
+
+Performance optimization.
+
+PHASE 17
+
+Accessibility.
+
+PHASE 18
+
+Final polish.
+
+============================================================
+QUALITY BAR
+============================================================
+
+The final website should feel like:
+
+AWWWARDS-LEVEL DIGITAL EXPERIENCE
+
+combined with:
+
+GitHub
++
+Arcade Game
++
+Bangkok Night
++
+Treasure Hunt
++
+Interactive Museum
++
+Futuristic Research Lab
+
+It should feel:
+
+Premium
+Experimental
+Mysterious
+Playful
+Technical
+Cinematic
+Fast
+Immersive
+Human
+Culturally inspired
+
+============================================================
+MOST IMPORTANT CREATIVE RULE
+============================================================
+
+DO NOT make the website look like every other AI hackathon website.
+
+If an element feels generic, redesign it.
+
+If an animation exists only because "websites have animations", remove it.
+
+If a 3D object does not contribute to the story, remove it.
+
+If a Bangkok image is merely decorative, reconsider its purpose.
+
+If a retro element feels childish, simplify it.
+
+Everything must serve the central story:
+
+GIT INIT
+→
+DISCOVER
+→
+BUILD
+→
+COMMIT
+→
+SURVIVE
+→
+UNLOCK
+→
+PUSH
+→
+BANGKOK
+→
+THE WORLD
+
+============================================================
+FINAL EXPERIENCE
+============================================================
+
+The user should finish the website thinking:
+
+"I have never seen a hackathon website like this."
+
+They should want to:
+
+- explore
+- click
+- scroll
+- discover
+- solve clues
+- share the website
+- register
+- tell friends about the hidden repository
+
+The website should itself become part of the hackathon.
+
+Do not merely advertise GIT.COMMIT.PUSH.
+
+MAKE THE WEBSITE FEEL LIKE THE FIRST LEVEL OF GIT.COMMIT.PUSH.
+
+Now inspect the existing project and implement this redesign carefully,
+incrementally and professionally.

@@ -1,4 +1,4 @@
-import { type FormEvent, type ReactNode, useEffect, useMemo, useState } from 'react';
+import { createContext, type FormEvent, type ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -120,6 +120,132 @@ const challenges = [
   },
 ];
 
+type TreasureClue = {
+  id: string;
+  title: string;
+  path: string;
+  description: string;
+  reward: string;
+};
+
+const clueRegistry: TreasureClue[] = [
+  { id: 'clue-01', title: 'THE UNTRACKED FILE', path: '/unknown/.secret', description: 'A clean repository is never completely clean.', reward: 'a file with no README' },
+  { id: 'clue-02', title: 'THE PIXEL ARTIFACT', path: '/signal/pixel', description: 'Curiosity has a frequency. Stay with the strange little signal.', reward: 'a brighter map fragment' },
+  { id: 'clue-03', title: 'THE LOST BRANCH', path: '/branches/unknown', description: 'There is a branch the public route forgot to draw.', reward: 'an unlisted branch' },
+  { id: 'clue-04', title: 'THE COMMIT RUNNER', path: '/runner/awake', description: 'The guide was here before the route had a name.', reward: 'a traveling companion' },
+  { id: 'clue-05', title: 'THE BANGKOK SIGIL', path: '/bangkok/pattern', description: 'Old geometry can carry a new instruction.', reward: 'a city-side coordinate' },
+  { id: 'clue-06', title: 'THE UNKNOWN CHECKOUT', path: '/checkout/question-mark', description: 'Some branches only exist after you ask the wrong question.', reward: 'a key with no lock' },
+  { id: 'clue-07', title: 'THE HIDDEN ROUTE', path: '/map/lost-route', description: 'Follow the line that was never meant to be on the map.', reward: 'the final coordinate' },
+];
+
+type TreasureContextValue = {
+  clues: TreasureClue[];
+  unlockedIds: string[];
+  latestClue: TreasureClue | null;
+  unlockClue: (id: string) => void;
+  dismissLatest: () => void;
+  hasClue: (id: string) => boolean;
+  complete: boolean;
+};
+
+const TreasureContext = createContext<TreasureContextValue | null>(null);
+const treasureStorageKey = 'gcp-treasure-progress';
+
+function useTreasure() {
+  const context = useContext(TreasureContext);
+  if (!context) throw new Error('useTreasure must be used inside TreasureProvider');
+  return context;
+}
+
+function DiscoveryNotification({ clue, onDismiss }: { clue: TreasureClue | null; onDismiss: () => void }) {
+  useEffect(() => {
+    if (!clue) return;
+    const timer = window.setTimeout(onDismiss, 5600);
+    return () => window.clearTimeout(timer);
+  }, [clue, onDismiss]);
+  if (!clue) return null;
+  return (
+    <div className="discovery-notification" role="status" aria-live="polite">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="font-mono-custom text-[10px] uppercase tracking-[.18em] text-[#ff7c4c]">signal recovered / clue unlocked</p>
+          <h2 className="mt-2 font-display text-xl font-bold text-[#f5eedf]">{clue.title}</h2>
+          <p className="mt-2 text-xs leading-5 text-[#aeb8c6]">{clue.description}</p>
+        </div>
+        <button type="button" onClick={onDismiss} className="text-[#687386] hover:text-[#f5eedf]" aria-label="Dismiss discovery notification"><X size={16} /></button>
+      </div>
+      <div className="mt-4 flex items-center justify-between border-t border-[#f5eedf]/10 pt-3 font-mono-custom text-[10px]">
+        <span className="text-[#7ee7d6]">{clue.path}</span>
+        <span className="text-[#b990ff]">{clue.reward}</span>
+      </div>
+    </div>
+  );
+}
+
+function DiscoveryHud() {
+  const { unlockedIds, complete } = useTreasure();
+  return (
+    <div className="discovery-hud" aria-label={`Discovery progress: ${unlockedIds.length} of ${clueRegistry.length} clues found`}>
+      <span className="font-mono-custom text-[9px] uppercase tracking-[.14em] text-[#687386]">{complete ? 'repository recovered' : 'discovery progress'}</span>
+      <span className="mt-2 flex gap-1.5" aria-hidden="true">
+        {clueRegistry.map((clue) => <span key={clue.id} className={`h-1.5 w-4 rounded-full transition ${unlockedIds.includes(clue.id) ? 'bg-[#7ee7d6] shadow-[0_0_8px_rgba(126,231,214,.8)]' : 'bg-[#f5eedf]/15'}`} />)}
+      </span>
+    </div>
+  );
+}
+
+function TreasureProvider({ children }: { children: ReactNode }) {
+  const [unlockedIds, setUnlockedIds] = useState<string[]>(() => {
+    try {
+      const saved = window.localStorage.getItem(treasureStorageKey);
+      const parsed = saved ? JSON.parse(saved) : [];
+      return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === 'string' && clueRegistry.some((clue) => clue.id === id)) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [latestClue, setLatestClue] = useState<TreasureClue | null>(null);
+  const unlockClue = (id: string) => {
+    const clue = clueRegistry.find((item) => item.id === id);
+    if (!clue) return;
+    setUnlockedIds((current) => {
+      if (current.includes(id)) return current;
+      const next = [...current, id];
+      window.localStorage.setItem(treasureStorageKey, JSON.stringify(next));
+      setLatestClue(clue);
+      return next;
+    });
+  };
+  useEffect(() => {
+    const sync = () => {
+      try {
+        const saved = window.localStorage.getItem(treasureStorageKey);
+        const parsed = saved ? JSON.parse(saved) : [];
+        if (Array.isArray(parsed)) setUnlockedIds(parsed.filter((id): id is string => typeof id === 'string' && clueRegistry.some((clue) => clue.id === id)));
+      } catch {
+        // Ignore malformed local progress and keep the current session alive.
+      }
+    };
+    window.addEventListener('storage', sync);
+    return () => window.removeEventListener('storage', sync);
+  }, []);
+  const value = useMemo(() => ({
+    clues: clueRegistry,
+    unlockedIds,
+    latestClue,
+    unlockClue,
+    dismissLatest: () => setLatestClue(null),
+    hasClue: (id: string) => unlockedIds.includes(id),
+    complete: unlockedIds.length === clueRegistry.length,
+  }), [latestClue, unlockedIds]);
+  return (
+    <TreasureContext.Provider value={value}>
+      {children}
+      <DiscoveryNotification clue={latestClue} onDismiss={value.dismissLatest} />
+    </TreasureContext.Provider>
+  );
+}
+
 function Countdown({ compact = false }: { compact?: boolean }) {
   const target = useMemo(() => new Date('2026-11-07T19:00:00+07:00').getTime(), []);
   const [now, setNow] = useState(() => Date.now());
@@ -212,8 +338,77 @@ function TempleSilhouette() {
   );
 }
 
+function CommitRunner({ compact = false }: { compact?: boolean }) {
+  const { unlockClue, hasClue } = useTreasure();
+  const [mood, setMood] = useState<'idle' | 'discover'>('idle');
+  const discover = () => {
+    setMood('discover');
+    unlockClue('clue-04');
+    window.setTimeout(() => setMood('idle'), 1000);
+  };
+  return (
+    <button
+      type="button"
+      className={`commit-runner group ${compact ? 'commit-runner-compact' : ''} ${mood === 'discover' ? 'is-discovering' : ''}`}
+      onClick={discover}
+      aria-label={hasClue('clue-04') ? 'The Commit Runner, clue already discovered' : 'Wake the Commit Runner'}
+      title={hasClue('clue-04') ? 'The Commit Runner is watching the route.' : 'A small explorer is waiting.'}
+    >
+      <span className="runner-art" aria-hidden="true">
+        <span className="runner-glow" />
+        <span className="runner-pack" />
+        <span className="runner-head"><span className="runner-visor" /></span>
+        <span className="runner-body"><span className="runner-artifact" /></span>
+        <span className="runner-leg runner-leg-left" /><span className="runner-leg runner-leg-right" />
+      </span>
+      <span className="runner-caption font-mono-custom text-[9px] uppercase tracking-[.13em]">{mood === 'discover' ? 'signal found' : 'commit runner'}</span>
+    </button>
+  );
+}
+
+function PixelArtifact() {
+  const { unlockClue, hasClue } = useTreasure();
+  const [armed, setArmed] = useState(false);
+  useEffect(() => {
+    if (!armed || hasClue('clue-02')) return;
+    const timer = window.setTimeout(() => unlockClue('clue-02'), 1700);
+    return () => window.clearTimeout(timer);
+  }, [armed, hasClue, unlockClue]);
+  return (
+    <button
+      type="button"
+      className={`pixel-artifact ${armed ? 'is-armed' : ''} ${hasClue('clue-02') ? 'is-found' : ''}`}
+      onMouseEnter={() => setArmed(true)}
+      onMouseLeave={() => setArmed(false)}
+      onFocus={() => setArmed(true)}
+      onBlur={() => setArmed(false)}
+      onClick={() => unlockClue('clue-02')}
+      aria-label={hasClue('clue-02') ? 'Pixel artifact discovered' : 'Inspect the pixel artifact'}
+    >
+      <span className="pixel-artifact-core" aria-hidden="true" />
+    </button>
+  );
+}
+
+function BangkokSigil() {
+  const { unlockClue, hasClue } = useTreasure();
+  return (
+    <button
+      type="button"
+      className={`bangkok-sigil ${hasClue('clue-05') ? 'is-found' : ''}`}
+      onClick={() => unlockClue('clue-05')}
+      aria-label={hasClue('clue-05') ? 'Bangkok sigil discovered' : 'Inspect the Bangkok graphic'}
+    >
+      ◈
+    </button>
+  );
+}
+
 function TerminalWindow() {
+  const { unlockClue, hasClue } = useTreasure();
   const [stage, setStage] = useState<'init' | 'commit' | 'push'>('init');
+  const [commandInput, setCommandInput] = useState('');
+  const [commandOutput, setCommandOutput] = useState<string[]>([]);
   const messages = {
     init: { command: '$ git init', line: 'initializing_future...', status: 'repository_created', destination: 'signal acquired: 03 cities / 01 branch' },
     commit: { command: '$ git commit', line: 'building_what_doesnt_exist...', status: 'challenge_unlocked', destination: 'commit window: 24–36 hours / NAGPUR' },
@@ -231,7 +426,25 @@ function TerminalWindow() {
       if (index >= fullText.length) window.clearInterval(timer);
     }, 55);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [fullText]);
+  const runCommand = (event: FormEvent) => {
+    event.preventDefault();
+    const command = commandInput.trim().toLowerCase();
+    if (!command) return;
+    const output: Record<string, string> = {
+      'git status': hasClue('clue-01') ? 'Your repository is clean. .secret is already tracked.' : 'Your repository is clean. But there is one untracked file: .secret',
+      'git branch --secret': hasClue('clue-03') ? 'main  init  commit  push  lost-branch' : 'main  init  commit  push  ?',
+      'git checkout ?': hasClue('clue-06') ? 'The question has already been checked out.' : 'ACCESS DENIED. The branch is looking back.',
+      'git checkout lost-commit': 'The Lost Commit is not in this working tree.',
+      'git log --hidden': 'No history. Only evidence.',
+      'git push origin world': 'PUSH QUEUED. The world is listening.',
+    };
+    setCommandOutput((current) => [...current.slice(-1), output[command] ?? 'command not found: try a smaller question']);
+    if (command === 'git status') unlockClue('clue-01');
+    if (command === 'git branch --secret') unlockClue('clue-03');
+    if (command === 'git checkout ?') unlockClue('clue-06');
+    setCommandInput('');
+  };
   return (
     <div className="terminal-window scanline relative rounded-sm" data-testid="terminal-window">
       <div className="terminal-top flex items-center justify-between px-4 py-3">
@@ -243,6 +456,11 @@ function TerminalWindow() {
         <div className="text-[#7ee7d6]">✓ {current.destination}</div>
         <div className="text-[#ff4f9a]">→ {current.status}</div>
         <div className="pt-2 text-[#687386]"># no spectators. only contributors.</div>
+        {commandOutput.map((line, index) => <div key={`${line}-${index}`} className="text-[#b990ff]">↳ {line}</div>)}
+        <form onSubmit={runCommand} className="mt-3 flex items-center gap-2 border-t border-[#f5eedf]/10 pt-3">
+          <label htmlFor="terminal-command" className="text-[#ff7c4c]">$</label>
+          <input id="terminal-command" value={commandInput} onChange={(event) => setCommandInput(event.target.value)} className="min-w-0 flex-1 bg-transparent text-[#f5eedf] outline-none placeholder:text-[#4e596a]" placeholder="try a command" aria-label="Try a hidden terminal command" autoComplete="off" />
+        </form>
       </div>
       <div className="terminal-stage-tabs border-t border-[#f5eedf]/10 px-4 py-3">
         <div className="flex gap-2">
@@ -361,6 +579,7 @@ function PageFrame({ kicker, title, intro, children }: { kicker: string; title: 
   return (
     <div className="site-shell">
       <Navbar />
+      <DiscoveryHud />
       <main className="content-layer">
         <section className="mx-auto max-w-[1240px] px-5 pb-12 pt-20 sm:px-8 sm:pb-20 sm:pt-28">
           <div className="max-w-3xl reveal">
@@ -398,6 +617,7 @@ function Home() {
   return (
     <div className="site-shell">
       <Navbar />
+      <DiscoveryHud />
       <main className="content-layer">
         <section className="relative isolate overflow-hidden px-5 pb-20 pt-14 sm:px-8 sm:pb-28 sm:pt-24">
           <div className="mx-auto grid max-w-[1240px] items-end gap-12 lg:grid-cols-[1.1fr_.65fr]">
@@ -424,10 +644,13 @@ function Home() {
                   <span className="blink h-1.5 w-1.5 rounded-full bg-[#ff7c4c]" /> bangkok / after dark
                 </div>
                 <div className="absolute bottom-4 right-4 font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#f5eedf]/80">signal 001 · live</div>
+                 <BangkokSigil />
+                 <PixelArtifact />
               </div>
               <div className="hero-terminal-float">
                 <TerminalWindow />
               </div>
+               <div className="mt-4 flex justify-end"><CommitRunner compact /></div>
               <div className="mt-4 flex items-center justify-between font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#687386]">
                 <span>Bangkok / Nagpur / online</span><span className="text-[#ff7c4c]">v.01.26</span>
               </div>
@@ -519,6 +742,7 @@ function JourneyPage() {
 }
 
 function TimelinePage() {
+  const { unlockClue, hasClue } = useTreasure();
   const milestones = [
     { date: '12 SEP 2026', label: 'repository opens', title: 'Registration goes live', text: 'Pick your team, sharpen your idea, and initialize your branch before the first gate closes.', icon: Code2, color: '#b990ff', rules: 'Teams of 1–4 · open worldwide' },
     { date: '18 OCT 2026 · 23:59 IST', label: 'first commit', title: 'Online qualifier closes', text: 'Push a working prototype and a clear README. The top 24 branches advance to Nagpur.', icon: GitBranch, color: '#7ee7d6', rules: 'Public GitHub repository · one submission' },
@@ -533,7 +757,7 @@ function TimelinePage() {
           {milestones.map((milestone, index) => { const Icon = milestone.icon; return <article key={milestone.title} className={`relative grid gap-6 pl-12 reveal delay-${Math.min(index + 1, 4)} sm:grid-cols-[64px_1fr] sm:pl-0`} data-testid={`timeline-item-${index}`}><div className="absolute left-0 top-0 grid h-10 w-10 place-items-center rounded-full border bg-[#0d1117] sm:relative sm:h-16 sm:w-16" style={{ borderColor: `${milestone.color}99`, color: milestone.color }}><Icon size={19} /></div><div className="glow-card rounded-sm p-5 sm:p-7"><div className="flex flex-wrap items-center justify-between gap-3"><span className="font-mono-custom text-[10px] uppercase tracking-[.14em]" style={{ color: milestone.color }}>{milestone.label}</span><span className="font-mono-custom text-[10px] text-[#687386]">{milestone.date}</span></div><h2 className="mt-4 font-display text-2xl font-bold text-[#f5eedf] sm:text-3xl">{milestone.title}</h2><p className="mt-3 max-w-2xl text-sm leading-7 text-[#a1a6b2]">{milestone.text}</p><div className="mt-5 flex items-center gap-2 font-mono-custom text-[10px] uppercase tracking-[.1em] text-[#687386]"><ShieldCheck size={13} style={{ color: milestone.color }} /> {milestone.rules}</div></div></article>; })}
         </div>
       </div>
-      <div className="mt-14 flex flex-col items-start justify-between gap-5 border-y border-[#f5eedf]/10 py-6 sm:flex-row sm:items-center"><div><p className="eyebrow text-[#7ee7d6]">the next gate</p><p className="mt-2 text-sm text-[#a1a6b2]">Bangkok finale starts in</p></div><Countdown compact /><Link href="/register" className="btn-primary min-h-[40px]" data-testid="link-timeline-register">Join the queue <ArrowRight size={14} /></Link></div>
+       <div className="mt-14 flex flex-col items-start justify-between gap-5 border-y border-[#f5eedf]/10 py-6 sm:flex-row sm:items-center"><div><p className="eyebrow text-[#7ee7d6]">the next gate</p><p className="mt-2 text-sm text-[#a1a6b2]">Bangkok finale starts in</p></div><Countdown compact /><div className="flex items-center gap-3"><button type="button" className={`hidden-branch-button ${hasClue('clue-03') ? 'is-found' : ''}`} onClick={() => unlockClue('clue-03')} aria-label="Inspect the unlisted branch">{hasClue('clue-03') ? 'lost branch found' : 'branch ?'}</button><Link href="/register" className="btn-primary min-h-[40px]" data-testid="link-timeline-register">Join the queue <ArrowRight size={14} /></Link></div></div>
        <div className="cultural-strip mt-14 overflow-hidden rounded-sm border border-[#f5eedf]/15">
          <img src={watArunFestivalImage} alt="Wat Arun illuminated along the Chao Phraya River during a Bangkok festival" className="h-48 w-full object-cover opacity-70 sm:h-64" />
          <div className="flex flex-col justify-between gap-3 border-t border-[#f5eedf]/10 bg-[#17121d]/90 px-5 py-4 sm:flex-row sm:items-center sm:px-7">
@@ -610,12 +834,13 @@ function PrizesPage() {
 
 function UninventedPage() {
   const [selected, setSelected] = useState(0);
+  const { unlockClue, hasClue } = useTreasure();
   const beat = expeditionBeats[selected];
   return (
     <PageFrame kicker="00 / the operating philosophy" title="Build what doesn’t exist yet." intro="GIT.COMMIT.PUSH is an expedition for people who would rather invent the question than polish the obvious answer. The map is not a schedule. It is a sequence of unlocks.">
       <div className="mt-14 grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
         <div className="glow-card thai-corner rounded-sm p-5 sm:p-7">
-          <div className="mb-6 flex items-center justify-between"><span className="font-mono-custom text-[10px] uppercase tracking-[.15em] text-[#687386]">quest map / 001</span><Radio size={16} className="text-[#7ee7d6]" /></div>
+           <div className="mb-6 flex items-center justify-between"><span className="font-mono-custom text-[10px] uppercase tracking-[.15em] text-[#687386]">quest map / 001</span><button type="button" className={`hidden-route-marker ${hasClue('clue-07') ? 'is-found' : ''}`} onClick={() => { setSelected(7); unlockClue('clue-07'); }} aria-label="Follow the hidden route on the map">⌁</button></div>
           <div className="space-y-2">
             {expeditionBeats.map((item, index) => <button key={item.label} type="button" onClick={() => setSelected(index)} className={`quest-list-item flex w-full items-center gap-3 rounded-sm border px-3 py-3 text-left transition ${selected === index ? 'border-[#f5eedf]/30 bg-[#f5eedf]/[.06]' : 'border-transparent hover:border-[#f5eedf]/15'}`}><span className="font-mono-custom text-[10px]" style={{ color: item.color }}>0{index + 1}</span><span className="font-display text-lg font-bold text-[#f5eedf]">{item.label}</span><ChevronRight size={14} className={`ml-auto transition ${selected === index ? 'translate-x-1 text-[#ff7c4c]' : 'text-[#687386]'}`} /></button>)}
           </div>
@@ -706,10 +931,11 @@ function StagePage({ stage }: { stage: keyof typeof stageData }) {
   return (
     <PageFrame kicker={data.kicker} title={data.title} intro={data.intro}>
       <div className="mt-14 grid gap-8 lg:grid-cols-[1.15fr_.85fr]">
-        <div className="stage-photo thai-corner relative min-h-[420px] overflow-hidden rounded-sm border" style={{ borderColor: `${data.accent}66` }}>
+         <div className="stage-photo thai-corner relative min-h-[420px] overflow-hidden rounded-sm border" style={{ borderColor: `${data.accent}66` }}>
           <img src={data.image} alt={`${data.location} event visual`} className="absolute inset-0 h-full w-full object-cover opacity-75" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/30 to-transparent" />
           <div className="relative flex h-full min-h-[420px] flex-col justify-between p-6 sm:p-9"><div className="flex items-center justify-between font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#f5eedf]"><span style={{ color: data.accent }}>$ {data.command}</span><span>stage / 0{stage === 'init' ? 1 : stage === 'commit' ? 2 : 3}</span></div><div><p className="font-mono-custom text-[10px] uppercase tracking-[.16em]" style={{ color: data.accent }}>{data.location}</p><h2 className="mt-3 max-w-lg font-display text-5xl font-bold leading-[.9] tracking-[-.05em] text-[#f5eedf] sm:text-7xl">{stage === 'push' ? <>Bangkok<br /><span style={{ color: data.accent }}>is the payload.</span></> : stage === 'commit' ? <>The room<br /><span style={{ color: data.accent }}>is the pressure.</span></> : <>The blank repo<br /><span style={{ color: data.accent }}>is the invitation.</span></>}</h2></div></div>
+           <div className="absolute bottom-5 right-5"><CommitRunner compact /></div>
         </div>
         <div className="glow-card rounded-sm p-6 sm:p-8">
           <div className="flex items-center justify-between"><span className="font-mono-custom text-xs" style={{ color: data.accent }}>$ {data.command}</span><Rocket size={18} style={{ color: data.accent }} /></div>
@@ -725,6 +951,44 @@ function StagePage({ stage }: { stage: keyof typeof stageData }) {
   );
 }
 
+function LostCommitPage() {
+  const { complete, unlockedIds } = useTreasure();
+  const [progress, setProgress] = useState(complete ? 100 : 0);
+  useEffect(() => {
+    if (!complete) {
+      setProgress(0);
+      return;
+    }
+    let value = 0;
+    const timer = window.setInterval(() => {
+      value = Math.min(100, value + 10);
+      setProgress(value);
+      if (value >= 100) window.clearInterval(timer);
+    }, 90);
+    return () => window.clearInterval(timer);
+  }, [complete]);
+  return (
+    <PageFrame kicker="secret / recovered history" title={complete ? 'You found what was never meant to be found.' : 'This branch is looking back.'} intro={complete ? 'The repository has yielded its missing history. Keep the commit close; some discoveries are better carried than explained.' : 'ACCESS DENIED. The lost commit is not in the current working tree. Keep exploring the route until the repository recognizes you.'}>
+      <div className={`lost-commit-vault mt-14 ${complete ? 'is-open' : ''}`}>
+        <div className="relative z-10">
+          <div className="flex items-center justify-between font-mono-custom text-[10px] uppercase tracking-[.16em] text-[#687386]">
+            <span className={complete ? 'text-[#7ee7d6]' : 'text-[#ff4f9a]'}>$ git checkout lost-commit</span>
+            <span>{complete ? 'commit recovered' : `${unlockedIds.length} / ${clueRegistry.length} signals`}</span>
+          </div>
+          <div className="mt-10 space-y-3 font-mono-custom text-xs leading-6">
+            <p className="text-[#8f98a8]">Loading...</p>
+            <p className="text-[#8f98a8]">Recovering deleted commit...</p>
+            <div className="flex items-center gap-3 text-[#f5eedf]"><span className="tracking-[.1em]">{'█'.repeat(Math.floor(progress / 4))}{'░'.repeat(25 - Math.floor(progress / 4))}</span><span>{progress}%</span></div>
+            <p className={complete && progress === 100 ? 'text-[#7ee7d6]' : 'text-[#687386]'}>{complete && progress === 100 ? 'COMMIT RECOVERED.' : 'COMMIT NOT FOUND.'}</p>
+          </div>
+          {complete && progress === 100 && <div className="mt-12 border-t border-[#f5eedf]/10 pt-8"><p className="font-mono-custom text-[10px] uppercase tracking-[.18em] text-[#ff7c4c]">achievement unlocked</p><h2 className="mt-3 font-display text-5xl font-bold tracking-[-.06em] text-[#f5eedf] sm:text-7xl">THE LOST COMMIT</h2><p className="mt-5 max-w-xl text-base leading-7 text-[#b9c0ca]">You found what was never meant to be found.</p><div className="mt-8 inline-flex items-center gap-3 border border-[#ff7c4c]/50 bg-[#ff7c4c]/[.06] px-4 py-3 font-mono-custom text-[10px] uppercase tracking-[.14em] text-[#ffb398]"><GitBranch size={16} /> repository explorer · {clueRegistry.length}/{clueRegistry.length}</div></div>}
+          {!complete && <div className="mt-10 border-t border-[#f5eedf]/10 pt-6"><Link href="/un-invented" className="btn-secondary">Return to the route <ArrowRight size={15} /></Link></div>}
+        </div>
+      </div>
+    </PageFrame>
+  );
+}
+
 function Router() {
   return (
     <ErrorBoundary resetKey={useLocation()[0]}>
@@ -735,6 +999,7 @@ function Router() {
         <Route path="/git-init"><StagePage stage="init" /></Route>
         <Route path="/git-commit"><StagePage stage="commit" /></Route>
         <Route path="/git-push"><StagePage stage="push" /></Route>
+         <Route path="/lost-commit" component={LostCommitPage} />
         <Route path="/journey" component={JourneyPage} />
         <Route path="/timeline" component={TimelinePage} />
         <Route path="/register" component={RegisterPage} />
@@ -749,9 +1014,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <Router />
-        </WouterRouter>
+        <TreasureProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+            <Router />
+          </WouterRouter>
+        </TreasureProvider>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
