@@ -162,6 +162,10 @@
   background-size: 16px 16px;
 }
 .route-line { stroke-dasharray: 8 8; animation: dash 13s linear infinite; }
+.route-trail-dash { stroke-dasharray: 18 14; animation: trailDash 8s linear infinite; }
+.animate-spin-slow { animation: spin 8s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes trailDash { to { stroke-dashoffset: -320; } }
 .blink { animation: blink 1.15s step-end infinite; }
 .cursor-blink { border-right: 2px solid #ff7c4c; animation: blink .95s step-end infinite; }
 .reveal { animation: reveal .7s both cubic-bezier(.2,.7,.2,1); }
@@ -169,10 +173,10 @@
 .ticker { animation: ticker 28s linear infinite; }
 .scanline { position: relative; overflow: hidden; }
 .scanline::after { content:""; position:absolute; inset:0; pointer-events:none; background: linear-gradient(transparent 50%, rgba(255,255,255,.025) 50%); background-size:100% 4px; mix-blend-mode:screen; }
-.thai-corner { position: relative; }
-.thai-corner::before, .thai-corner::after { content: ""; position: absolute; width: 20px; height: 20px; border-color: rgba(255,124,76,.55); border-style: solid; }
-.thai-corner::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
-.thai-corner::after { right: 10px; bottom: 10px; border-width: 0 1px 1px 0; }
+.nepali-corner { position: relative; }
+.nepali-corner::before, .nepali-corner::after { content: ""; position: absolute; width: 20px; height: 20px; border-color: rgba(255,124,76,.55); border-style: solid; }
+.nepali-corner::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+.nepali-corner::after { right: 10px; bottom: 10px; border-width: 0 1px 1px 0; }
 .prize-sheen { background: linear-gradient(120deg, rgba(255,255,255,0) 20%, rgba(255,255,255,.15) 48%, rgba(255,255,255,0) 72%); background-size: 240% 100%; animation: sheen 7s ease-in-out infinite; }
 .dispatch-stage img { filter: saturate(.88) contrast(1.08); }
 .dispatch-tab { min-height: 0; }
