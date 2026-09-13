@@ -1325,14 +1325,15 @@ function AboutUsPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#7ee7d6]/5 via-transparent to-[#b990ff]/5" />
 
         <div className="relative z-10 flex flex-col items-start max-w-3xl">
-          <div className="flex items-center gap-5 mb-8">
-            <div className="h-18 w-18 sm:h-22 sm:w-22 rounded-xl border border-[#7ee7d6]/40 bg-[#f8f9fa] p-2 shadow-[0_0_30px_rgba(126,231,214,0.25)] overflow-hidden shrink-0 flex items-center justify-center">
-              <img src="/arqon_logo_clean.png" alt="Arqon Vectors Logo" className="h-full w-full object-contain drop-shadow-sm" />
+          <div className="mb-8 w-full">
+            <div className="inline-block rounded-xl border border-[#7ee7d6]/40 bg-[#f8f9fa] p-3 sm:p-4 shadow-[0_0_35px_rgba(126,231,214,0.25)] transition-all hover:border-[#7ee7d6]">
+              <img 
+                src="/arqon_full_logo.png" 
+                alt="ARQON VECTORS" 
+                className="h-16 sm:h-20 w-auto max-w-full object-contain drop-shadow-sm" 
+              />
             </div>
-            <div>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#f5eedf] tracking-tight">ARQON VECTORS</h2>
-              <p className="font-mono-custom text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#7ee7d6] mt-2">BUILD. ORCHESTRATE. SCALE.</p>
-            </div>
+            <p className="font-mono-custom text-xs uppercase tracking-[0.25em] text-[#7ee7d6] mt-3 font-semibold">BUILD. ORCHESTRATE. SCALE.</p>
           </div>
 
           <div className="space-y-5">
