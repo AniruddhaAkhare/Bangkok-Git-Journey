@@ -265,3 +265,165 @@
   .discovery-notification { left: 10px; bottom: 10px; width: calc(100vw - 20px); }
   .lost-commit-vault { min-height: 420px; padding: 20px; }
 }
+
+/* ============================================================================
+   CINEMATIC OPENING INTRO STYLES
+   ============================================================================ */
+.intro-scanlines {
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.45) 50%),
+              linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+@keyframes glitch-flash {
+  0% { transform: translate(0) scale(1); filter: hue-rotate(0deg); }
+  20% { transform: translate(-3px, 2px) scale(1.01); filter: hue-rotate(90deg) saturate(2); }
+  40% { transform: translate(3px, -2px) scale(0.99); filter: hue-rotate(180deg) invert(0.1); }
+  60% { transform: translate(-2px, -1px) scale(1.02); filter: hue-rotate(270deg); }
+  80% { transform: translate(2px, 1px) scale(1); filter: hue-rotate(360deg); }
+  100% { transform: translate(0) scale(1); filter: hue-rotate(0deg); }
+}
+
+.animate-glitch {
+  animation: glitch-flash 0.35s steps(2, start) infinite;
+}
+
+.glitch-text {
+  position: relative;
+  font-family: var(--app-font-mono);
+  color: #fff;
+  text-transform: uppercase;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+.glitch-text::before {
+  left: 3px;
+  text-shadow: -2px 0 #ff4f9a;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+.glitch-text::after {
+  left: -3px;
+  text-shadow: -2px 0 #7ee7d6;
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 80% 0); }
+  20% { clip-path: inset(60% 0 10% 0); }
+  40% { clip-path: inset(40% 0 50% 0); }
+  60% { clip-path: inset(80% 0 5% 0); }
+  80% { clip-path: inset(10% 0 70% 0); }
+  100% { clip-path: inset(30% 0 50% 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(10% 0 60% 0); }
+  20% { clip-path: inset(30% 0 20% 0); }
+  40% { clip-path: inset(70% 0 10% 0); }
+  60% { clip-path: inset(20% 0 50% 0); }
+  80% { clip-path: inset(50% 0 30% 0); }
+  100% { clip-path: inset(5% 0 80% 0); }
+}
+
+.cyber-box {
+  position: relative;
+  background: rgba(10, 13, 18, 0.95);
+  border: 2px solid #7ee7d6;
+  box-shadow: 4px 4px 0 #ff4f9a, -4px -4px 0 #ff7c4c;
+}
+.cyber-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -10px; width: 4px; height: 100%; background: #7ee7d6;
+}
+.cyber-box::after {
+  content: '';
+  position: absolute;
+  top: 0; right: -10px; width: 4px; height: 100%; background: #ff4f9a;
+}
+.cyber-pixel-corners {
+  clip-path: polygon(
+    0 16px, 16px 16px, 16px 0,
+    calc(100% - 16px) 0, calc(100% - 16px) 16px, 100% 16px,
+    100% calc(100% - 16px), calc(100% - 16px) calc(100% - 16px), calc(100% - 16px) 100%,
+    16px 100%, 16px calc(100% - 16px), 0 calc(100% - 16px)
+  );
+}
+
+/* Brutal Cyberpunk Pixel Glitch & Tear Transition */
+@keyframes pixel-dissolve {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  20% {
+    transform: scale(1.04) translate(calc(var(--gx, 0) * 1px), calc(var(--gy, 0) * 1px));
+    background-color: #7ee7d6;
+    border-color: #ff4f9a;
+  }
+  45% {
+    transform: scale(0.92) skew(8deg);
+    background-color: #ff4f9a;
+    border-color: #7ee7d6;
+  }
+  70% {
+    opacity: 0.7;
+    transform: scale(0.6) translate(calc(var(--gx, 0) * 2px), calc(var(--gy, 0) * 2px));
+    background-color: #0d1117;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(45deg);
+  }
+}
+
+@keyframes brutal-screen-tear {
+  0% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0, 0);
+  }
+  20% {
+    clip-path: inset(20% 0 45% 0);
+    transform: translate(-14px, 0);
+  }
+  40% {
+    clip-path: inset(55% 0 15% 0);
+    transform: translate(18px, 0);
+  }
+  60% {
+    clip-path: inset(10% 0 65% 0);
+    transform: translate(-8px, 0);
+  }
+  80% {
+    clip-path: inset(40% 0 35% 0);
+    transform: translate(10px, 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0, 0);
+  }
+}
+
+.brutal-glitch-tear {
+  animation: brutal-screen-tear 0.4s steps(4) infinite;
+}
+
+.cyber-pixel-tile {
+  background-color: #000000;
+  border: 1px solid rgba(126, 231, 214, 0.08);
+}
+
+.cyber-pixel-tile.shattering {
+  animation: pixel-dissolve 0.75s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+

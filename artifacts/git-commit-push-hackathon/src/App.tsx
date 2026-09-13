@@ -6,6 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import PixelTransition from '@/components/PixelTransition';
 import { GlowingSnow } from '@/components/GlowingSnow';
+import { CinematicIntro } from '@/components/CinematicIntro';
 import {
   ArrowRight, Check, ChevronRight, Clock3, Code2, Compass, GitBranch, Github, Globe2, Linkedin, Mail, MapPin,
   Menu, Network, Pause, Phone, Play, Radio, Rocket, RotateCcw, Send, ShieldCheck, Sparkles, Terminal, TrainFront, Trophy, Twitter,
@@ -91,112 +92,112 @@ const challenges = [
   {
     slug: "agent-trust-handshake-protocol",
     title: "AGENT TRUST HANDSHAKE PROTOCOL",
-    tags: "TBA(To be added)",
+    tags: "AI, Cryptography, Protocols",
     question: "AI agents are increasingly transacting and communicating on behalf of humans and businesses — but right now, one agent has no reliable way to verify who another agent is, what it's authorized to do, or whether its claims can be trusted. This is a real, unsolved gap in the emerging agent economy.",
     detail: "Build a working handshake protocol between two AI agents that lets one verify the other's identity and permissions before it trusts what the other agent tells it.",
     accent: "#b990ff",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Hard",
+    output: "A secure verification handshake protocol with a working demo.",
   },
   {
     slug: "the-unknown-detector",
     title: "THE UNKNOWN DETECTOR",
-    tags: "TBA(To be added)",
+    tags: "Data Science, Machine Learning",
     question: "AI has gotten very good at answering questions we already know how to ask. It's much worse at noticing when something in the data doesn't fit any existing explanation — the kind of gap that real discoveries usually start from.",
     detail: "Build a system that looks through a real dataset and surfaces something that doesn't fit — not an answer, but a genuine, well-justified mystery worth investigating, for someone deciding what to research next.",
     accent: "#7ee7d6",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Medium",
+    output: "Anomaly detection system with justification logs.",
   },
   {
     slug: "regional-climate-cascade-simulator",
     title: "REGIONAL CLIMATE-CASCADE SIMULATOR",
-    tags: "TBA(To be added)",
+    tags: "Simulation, Data Viz, Environment",
     question: "Decision-makers need to understand how a change in one environmental factor cascades into others — but existing tools either flatten this into a single number or are too complex for anyone outside a research lab to actually use.",
     detail: "Build an interactive simulator for one real region where a user can change one variable and see how it cascades into the others.",
     accent: "#ff7c4c",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Medium",
+    output: "Interactive simulation dashboard.",
   },
   {
     slug: "micro-grid-energy-balancer",
     title: "MICRO-GRID ENERGY BALANCER",
-    tags: "TBA(To be added)",
+    tags: "IoT, Optimization, Energy",
     question: "As homes, EVs, and local solar/battery systems multiply, no simple system exists to decide, moment to moment, who gets power, who waits, and who gets cut off during a shortfall — for a small, local grid.",
     detail: "Build a system that allocates limited power across competing sources and demands in real time, and can justify each decision it makes.",
     accent: "#ff4f9a",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Hard",
+    output: "Real-time resource allocation algorithm & dashboard.",
   },
   {
     slug: "the-digital-soul",
     title: "THE DIGITAL SOUL",
-    tags: "TBA(To be added)",
+    tags: "LLM, Knowledge Graph, UX",
     question: "A person spends decades accumulating knowledge, decisions, and lessons learned — and most of it disappears when they do. There's no system today that preserves a person's actual accumulated wisdom while being honest about the difference between what they truly said and what's being guessed on their behalf.",
     detail: "Build a system that lets someone explore what a real person knew and why they made certain decisions — while clearly separating what that person actually said from anything the system inferred.",
     accent: "#b990ff",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Medium",
+    output: "Personal knowledge exploration interface.",
   },
   {
     slug: "localized-food-shortage-early-warning",
     title: "LOCALIZED FOOD-SHORTAGE EARLY WARNING",
-    tags: "TBA(To be added)",
+    tags: "Predictive Analytics, Agriculture",
     question: "Prices for a single crop in a single region can spike suddenly and unpredictably, and the people affected usually only find out once it's already happened.",
     detail: "Build a system that predicts, ahead of time, when a specific crop in a specific region is heading toward a shortage — for the farmers, traders, or local officials who'd need to act on it.",
     accent: "#7ee7d6",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Hard",
+    output: "Early warning alert system and predictive model.",
   },
   {
     slug: "prove-without-revealing-identity-check",
     title: "PROVE-WITHOUT-REVEALING IDENTITY CHECK",
-    tags: "TBA(To be added)",
+    tags: "ZKP, Identity, Web3",
     question: "People are constantly forced to hand over far more personal information than a situation requires — showing a full ID just to prove you're over 18, for example.",
     detail: "Build a system that lets someone prove a single fact about themselves to a verifier, without revealing anything else about who they are.",
     accent: "#ff7c4c",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Hard",
+    output: "Zero-knowledge proof verification app.",
   },
   {
     slug: "human-in-the-loop-decision-gate",
     title: "HUMAN-IN-THE-LOOP DECISION GATE",
-    tags: "TBA(To be added)",
+    tags: "AI Safety, HCI, Workflow",
     question: "AI systems making high-stakes decisions — loans, medical triage, industrial alerts — either act with too much unchecked autonomy or ask a human every single time. Nothing today decides which one a given case actually deserves.",
     detail: "Build a layer that sits in front of an AI's decision and decides, case by case, whether the AI should act on its own, ask a human, or refuse — for the people relying on that decision.",
     accent: "#ff4f9a",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Medium",
+    output: "Decision-gating middleware layer.",
   },
   {
     slug: "the-agent-payment-and-settlement-rail",
     title: "THE AGENT PAYMENT & SETTLEMENT RAIL",
-    tags: "TBA(To be added)",
+    tags: "Fintech, Web3, Smart Agents",
     question: "AI agents are starting to negotiate and pay on people's behalf, but there's no equivalent of a bank or escrow system between agents — if a payment goes wrong, there's no authorization proof, no dispute process, and no way to reverse it.",
     detail: "Build a payment flow between two AI agents that includes spend authorization and a way to dispute and reverse a bad transaction — for someone trusting an agent to spend on their behalf.",
     accent: "#b990ff",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Hard",
+    output: "Escrow and settlement smart contract.",
   },
   {
     slug: "agent-wallets-with-real-spending-limits-on-chain",
     title: "AGENT WALLETS WITH REAL SPENDING LIMITS (ON-CHAIN)",
-    tags: "TBA(To be added)",
+    tags: "Smart Contracts, Web3, Security",
     question: "Giving an AI agent a crypto wallet it can use autonomously is dangerous unless a human can cap what it spends, revoke its access instantly, and audit everything it did. Most agent-wallet setups today don't actually guarantee that.",
     detail: "Build a smart contract wallet that an AI agent can transact through, with spending limits the human owner controls and can revoke — for someone who wants to delegate spending without losing control of it.",
     accent: "#7ee7d6",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Medium",
+    output: "Auditable wallet with revocation limits.",
   },
   {
     slug: "wildcard-mission-2040",
     title: "WILDCARD — MISSION 2040",
-    tags: "TBA(To be added)",
+    tags: "Open-ended, Grand Challenge",
     question: "There are real problems today, affecting millions of people, that will get measurably worse by 2040 — and none of them currently have a solution good enough to stop that.",
     detail: "Pick one such problem, and build a working first step toward solving it — for the specific people it will affect.",
     accent: "#ff7c4c",
-    difficulty: "TBA(To be added)",
-    output: "TBA(To be added)",
+    difficulty: "Extreme",
+    output: "Working prototype addressing a 2040 crisis.",
   }
 ];
 
@@ -615,8 +616,8 @@ function Footer() {
   return (
     <footer className="content-layer border-t border-[#f5eedf]/10 bg-[#0a0d12]/70 pt-16 pb-8 mt-auto">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
-        <div className="grid gap-12 md:grid-cols-3 lg:grid-cols-4 border-b border-[#f5eedf]/10 pb-12">
-          <div className="lg:col-span-2">
+        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-4 border-b border-[#f5eedf]/10 pb-12">
+          <div>
             <p className="font-display text-xl font-bold text-[#f5eedf]">git commit and push hackathon</p>
             <p className="mt-4 max-w-sm text-sm leading-6 text-[#8f98a8]">
               Build what the future demands today. A launch-night hackathon by people who ship.
@@ -633,7 +634,7 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-mono-custom text-[11px] uppercase tracking-[.15em] text-[#0a0d12] mb-5 opacity-0 select-none">More</h4>
+            <h4 className="font-mono-custom text-[11px] uppercase tracking-[.15em] text-[#f5eedf] mb-5">Explore</h4>
             <ul className="space-y-3">
               {links.slice(4).map((link) => (
                 <li key={link.href}>
@@ -642,6 +643,33 @@ function Footer() {
               ))}
               <li>
                 <Link href="/register" className="text-sm font-semibold text-[#b990ff] hover:text-[#f5eedf] transition-colors">Register Now</Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-mono-custom text-[11px] uppercase tracking-[.15em] text-[#f5eedf] mb-5">Contact</h4>
+            <ul className="space-y-3 text-sm text-[#8f98a8]">
+              <li>
+                <span className="block text-[10px] text-[#687386] font-mono-custom uppercase tracking-wider">Aniruddha Akhare</span>
+                <a href="tel:+919689158304" className="hover:text-[#7ee7d6] transition-colors font-mono-custom text-xs flex items-center gap-1.5 mt-0.5">
+                  <Phone size={13} className="text-[#7ee7d6]" /> +91 9689158304
+                </a>
+              </li>
+              <li>
+                <span className="block text-[10px] text-[#687386] font-mono-custom uppercase tracking-wider">Parth Deshmukh</span>
+                <a href="tel:+918839652553" className="hover:text-[#b990ff] transition-colors font-mono-custom text-xs flex items-center gap-1.5 mt-0.5">
+                  <Phone size={13} className="text-[#b990ff]" /> +91 8839652553
+                </a>
+              </li>
+              <li className="pt-1">
+                <a href="mailto:work.parthdes@gmail.com" className="hover:text-[#ff7c4c] transition-colors font-mono-custom text-xs flex items-center gap-1.5">
+                  <Mail size={13} className="text-[#ff7c4c]" /> work.parthdes@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="mailto:aniruddhaakhare2004@gmail.com" className="hover:text-[#7ee7d6] transition-colors font-mono-custom text-xs flex items-center gap-1.5">
+                  <Mail size={13} className="text-[#7ee7d6]" /> aniruddhaakhare2004@gmail.com
+                </a>
               </li>
             </ul>
           </div>
@@ -719,9 +747,23 @@ function RoundPreview({ round, index }: { round: Round; index: number }) {
 }
 
 function Home() {
+  const [showIntro, setShowIntro] = useState(true);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleReplay = () => setShowIntro(true);
+    window.addEventListener('replay-cinematic-intro', handleReplay);
+    return () => window.removeEventListener('replay-cinematic-intro', handleReplay);
+  }, []);
+
   return (
     <div className="site-shell relative">
+      {showIntro && (
+        <CinematicIntro
+          onComplete={() => setShowIntro(false)}
+          onSkip={() => setShowIntro(false)}
+        />
+      )}
       <GlowingSnow />
       <Navbar />
       <DiscoveryHud />
@@ -1201,23 +1243,27 @@ function AboutUsPage() {
   const team = [
     {
       name: 'Aniruddha Akhare',
-      role: 'Agentic AI Developer and Co-Founder at ARQON Vectors, specializing in building intelligent, reasoning AI systems. With a track record of competing in over 40+ hackathons and securing multiple national-level podium finishes, he has mastered the art of turning ambitious ideas into real-world products under intense pressure. Now sharing his expertise as a Mentor and Judge for Smart India Hackathon (SIH) 2026, he is driven by a singular mindset: building AI that doesn\'t just answer, but gets things done.',
+      role: 'Agentic AI Developer and Co-Founder at ARQON Vectors, specializing in building intelligent, reasoning AI systems. With a track record of competing in over 80+ hackathons and securing multiple national-level podium finishes, he has mastered the art of turning ambitious ideas into real-world products under intense pressure. Now sharing his expertise as a Mentor and Judge for Smart India Hackathon (SIH) 2026, he is driven by a singular mindset: building AI that doesn\'t just answer, but gets things done.',
       image: '/team/aniruddha.png',
-      github: '#',
-      linkedin: '#',
-      twitter: '#',
-      email: '#',
-      phone: '#'
+      github: 'https://github.com/AniruddhaAkhare',
+      linkedin: 'http://www.linkedin.com/in/aniruddha-akhare-76b6a535a',
+      twitter: 'https://x.com/AniruddhaAkhare',
+      email: 'mailto:aniruddhaakhare2004@gmail.com',
+      emailDisplay: 'aniruddhaakhare2004@gmail.com',
+      phone: 'tel:+919689158304',
+      phoneDisplay: '+91 9689158304'
     },
     {
       name: 'Parth Deshmukh',
-      role: 'Software Developer and Co-Founder at ARQON Vectors. he bridges complex architecture with real-world execution—taking AI-driven platforms from prototypes to production-ready, high-traffic systems. Beyond technical scaling, he is a community leader who has orchestrated high-stakes technical competitions for 500+ participants and core team member at Google Developer Group. He also commands a massive digital footprint, generating over a million views.',
+      role: 'Software Developer and Co-Founder at ARQON Vectors. He bridges complex architecture with real-world execution—taking AI-driven platforms from prototypes to production-ready, high-traffic systems. Beyond technical scaling, he is a community leader who has orchestrated high-stakes technical competitions for 500+ participants and core team member at Google Developer Group. He also commands a massive digital footprint, generating over a million views.',
       image: '/team/parth.png',
-      github: '#',
-      linkedin: '#',
-      twitter: '#',
-      email: '#',
-      phone: '#'
+      github: 'https://github.com/parth2506-wq',
+      linkedin: 'https://www.linkedin.com/in/parth-deshmukh-47946b251/',
+      twitter: 'https://x.com/iamyourparth',
+      email: 'mailto:work.parthdes@gmail.com',
+      emailDisplay: 'work.parthdes@gmail.com',
+      phone: 'tel:+918839652553',
+      phoneDisplay: '+91 8839652553'
     }
   ];
 
@@ -1234,17 +1280,35 @@ function AboutUsPage() {
               )}
             </div>
             <h2 className="font-display text-2xl font-bold text-[#f5eedf]">{member.name}</h2>
-            <p className="mt-4 text-sm leading-6 text-[#a1a6b2] min-h-[60px]">{member.role}</p>
-            <div className="mt-8 flex items-center gap-4">
-              <a href={member.github} target="_blank" rel="noreferrer" className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors"><Github size={20} /></a>
-              <a href={member.linkedin} target="_blank" rel="noreferrer" className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors"><Linkedin size={20} /></a>
-              <a href={member.twitter} target="_blank" rel="noreferrer" className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors">
+            <p className="mt-5 text-[13.5px] sm:text-[14px] leading-relaxed text-justify text-[#c0c7d5] tracking-normal font-sans hyphens-auto min-h-[60px]">{member.role}</p>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-2 text-xs font-mono-custom">
+              <a href={member.phone} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#f5eedf]/5 hover:bg-[#7ee7d6]/10 border border-[#f5eedf]/10 hover:border-[#7ee7d6]/40 text-[#7ee7d6] transition-colors">
+                <Phone size={13} /> {member.phoneDisplay}
+              </a>
+              <a href={member.email} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#f5eedf]/5 hover:bg-[#ff7c4c]/10 border border-[#f5eedf]/10 hover:border-[#ff7c4c]/40 text-[#ff7c4c] transition-colors">
+                <Mail size={13} /> {member.emailDisplay}
+              </a>
+            </div>
+
+            <div className="mt-5 flex items-center gap-5">
+              <a href={member.github} target="_blank" rel="noreferrer" title="GitHub" className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors">
+                <Github size={20} />
+              </a>
+              <a href={member.linkedin} target="_blank" rel="noreferrer" title="LinkedIn" className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors">
+                <Linkedin size={20} />
+              </a>
+              <a href={member.twitter} target="_blank" rel="noreferrer" title="X (Twitter)" className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
                 </svg>
               </a>
-              <a href={member.email} className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors"><Mail size={20} /></a>
-              <a href={member.phone} className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors"><Phone size={20} /></a>
+              <a href={member.email} title={`Email: ${member.emailDisplay}`} className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors">
+                <Mail size={20} />
+              </a>
+              <a href={member.phone} title={`Call: ${member.phoneDisplay}`} className="text-[#8f98a8] hover:text-[#f5eedf] transition-colors">
+                <Phone size={20} />
+              </a>
             </div>
           </div>
         ))}
@@ -1262,8 +1326,8 @@ function AboutUsPage() {
 
         <div className="relative z-10 flex flex-col items-start max-w-3xl">
           <div className="flex items-center gap-5 mb-8">
-            <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-lg border border-[#f5eedf]/20 overflow-hidden bg-[#0a0d14] shadow-lg shrink-0">
-              <img src="/arqon_logo_1.jpg" alt="Arqon Vectors Logo" className="h-full w-full object-cover" />
+            <div className="h-18 w-18 sm:h-22 sm:w-22 rounded-xl border border-[#7ee7d6]/40 bg-[#f8f9fa] p-2 shadow-[0_0_30px_rgba(126,231,214,0.25)] overflow-hidden shrink-0 flex items-center justify-center">
+              <img src="/arqon_logo_clean.png" alt="Arqon Vectors Logo" className="h-full w-full object-contain drop-shadow-sm" />
             </div>
             <div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#f5eedf] tracking-tight">ARQON VECTORS</h2>
@@ -1281,6 +1345,11 @@ function AboutUsPage() {
             <p className="text-base sm:text-lg leading-relaxed text-[#c4b8c9]">
               From agent orchestration and AI automation to custom software, DevOps, observability, and industrial intelligence — we turn ideas into intelligent systems that build, decide, and scale.
             </p>
+
+            <div className="mt-8 pt-6 border-t border-[#7ee7d6]/20 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
+              <span className="font-mono-custom text-xs uppercase tracking-[0.2em] text-[#7ee7d6] font-semibold">Founders:</span>
+              <span className="text-base text-[#f5eedf] font-semibold tracking-wide">Aniruddha Akhare, Parth Deshmukh, Riya Umekar</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1294,7 +1363,8 @@ function FaqPage() {
     { q: 'Is there an entry fee?', a: 'No. Round 1 is completely free to enter. Register your team and submit your idea with absolutely zero financial friction.' },
     { q: 'What happens if we qualify for Round 2?', a: 'The top 300 teams from Round 1 will be invited to Nagpur for a rigorous physical hackathon. Be prepared to build live, further instruction would be clarrifies through communication channels' },
     { q: 'Who pays for the trip to Nepal?', a: 'The top 3 teams from the Nagpur qualifier will win a fully sponsored trip to Nepal for the final showdown and grand prize.' },
-    { q: 'Can we change our challenge repository after registering?', a: 'No, once your team selects a challenge repository and initializes the branch, you are locked in to that specific problem statement.' }
+    { q: 'Can we change our challenge repository after registering?', a: 'No, once your team selects a challenge repository and initializes the branch, you are locked in to that specific problem statement.' },
+    { q: 'How can we contact the organizers for queries or support?', a: 'You can reach out directly to the lead organizers: Aniruddha Akhare (+91 9689158304 / aniruddhaakhare2004@gmail.com) or Parth Deshmukh (+91 8839652553 / work.parthdes@gmail.com). We are actively responding to all participant queries.' }
   ];
 
   return (
@@ -1312,23 +1382,48 @@ function FaqPage() {
         ))}
         <div className="mt-12 glow-card nepali-corner rounded-sm p-8 text-center flex flex-col items-center border border-[#ff4f9a]/20 bg-[#ff4f9a]/5 relative overflow-hidden">
           <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-[#ff4f9a]/10 blur-[50px]" />
-          <h3 className="font-display text-2xl font-bold text-[#f5eedf] mb-3 relative z-10">Not satisfied? Talk to a real human.</h3>
-          <p className="text-[#a1a6b2] text-sm mb-6 max-w-md relative z-10">Reach out directly to our team for any specific queries or support regarding the expedition.</p>
-          <div className="flex flex-col sm:flex-row gap-8 items-center justify-center relative z-10">
-            <a href="mailto:placeholder@example.com" className="flex items-center gap-2 text-[#ff7c4c] hover:text-[#f5eedf] transition-colors font-mono-custom text-[12px] uppercase tracking-[.1em]">
-              <Mail size={16} /> work.parthdes@gmail.com
-            </a>
-            <a href="tel:+1234567890" className="flex items-center gap-2 text-[#b990ff] hover:text-[#f5eedf] transition-colors font-mono-custom text-[12px] uppercase tracking-[.1em]">
-              <Phone size={16} /> +1 (234) 567-890
-            </a>
-          </div>
-          <div className="mt-5 flex flex-col sm:flex-row gap-8 items-center justify-center relative z-10">
-            <a href="mailto:work.parthdes@gmail.com" className="flex items-center gap-2 text-[#ff7c4c] hover:text-[#f5eedf] transition-colors font-mono-custom text-[12px] uppercase tracking-[.1em]">
-              <Mail size={16} /> placeholder@example.com
-            </a>
-            <a href="tel:+1234567890" className="flex items-center gap-2 text-[#b990ff] hover:text-[#f5eedf] transition-colors font-mono-custom text-[12px] uppercase tracking-[.1em]">
-              <Phone size={16} /> +1 (234) 567-890
-            </a>
+          <h3 className="font-display text-2xl font-bold text-[#f5eedf] mb-3 relative z-10">Have questions? Talk to the organizers.</h3>
+          <p className="text-[#a1a6b2] text-sm mb-8 max-w-md relative z-10">Reach out directly to our team for any specific queries or support regarding the expedition.</p>
+          
+          <div className="grid sm:grid-cols-2 gap-6 w-full max-w-2xl relative z-10 text-left">
+            <div className="p-6 rounded border border-[#f5eedf]/10 bg-[#0d1117]/80 hover:border-[#7ee7d6]/30 transition-colors">
+              <p className="font-display font-bold text-[#f5eedf] text-lg">Aniruddha Akhare</p>
+              <p className="text-xs text-[#8f98a8] mb-4">Organizer & Co-Founder, Arqon Vectors</p>
+              <div className="space-y-3 font-mono-custom text-[13px]">
+                <a href="tel:+919689158304" className="flex items-center gap-2.5 text-[#7ee7d6] hover:text-[#f5eedf] transition-colors">
+                  <Phone size={15} /> +91 9689158304
+                </a>
+                <a href="mailto:aniruddhaakhare2004@gmail.com" className="flex items-center gap-2.5 text-[#ff7c4c] hover:text-[#f5eedf] transition-colors">
+                  <Mail size={15} /> aniruddhaakhare2004@gmail.com
+                </a>
+                <div className="pt-2 flex items-center gap-3 text-[#8f98a8]">
+                  <a href="https://github.com/AniruddhaAkhare" target="_blank" rel="noreferrer" title="GitHub" className="hover:text-[#f5eedf] transition-colors"><Github size={16} /></a>
+                  <a href="http://www.linkedin.com/in/aniruddha-akhare-76b6a535a" target="_blank" rel="noreferrer" title="LinkedIn" className="hover:text-[#f5eedf] transition-colors"><Linkedin size={16} /></a>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 rounded border border-[#f5eedf]/10 bg-[#0d1117]/80 hover:border-[#b990ff]/30 transition-colors">
+              <p className="font-display font-bold text-[#f5eedf] text-lg">Parth Deshmukh</p>
+              <p className="text-xs text-[#8f98a8] mb-4">Organizer & Co-Founder, Arqon Vectors</p>
+              <div className="space-y-3 font-mono-custom text-[13px]">
+                <a href="tel:+918839652553" className="flex items-center gap-2.5 text-[#b990ff] hover:text-[#f5eedf] transition-colors">
+                  <Phone size={15} /> +91 8839652553
+                </a>
+                <a href="mailto:work.parthdes@gmail.com" className="flex items-center gap-2.5 text-[#ff7c4c] hover:text-[#f5eedf] transition-colors">
+                  <Mail size={15} /> work.parthdes@gmail.com
+                </a>
+                <div className="pt-2 flex items-center gap-3 text-[#8f98a8]">
+                  <a href="https://github.com/parth2506-wq" target="_blank" rel="noreferrer" title="GitHub" className="hover:text-[#f5eedf] transition-colors"><Github size={16} /></a>
+                  <a href="https://www.linkedin.com/in/parth-deshmukh-47946b251/" target="_blank" rel="noreferrer" title="LinkedIn" className="hover:text-[#f5eedf] transition-colors"><Linkedin size={16} /></a>
+                  <a href="https://x.com/iamyourparth" target="_blank" rel="noreferrer" title="X" className="hover:text-[#f5eedf] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
