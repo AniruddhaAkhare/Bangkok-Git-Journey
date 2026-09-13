@@ -359,71 +359,91 @@
   );
 }
 
-/* Brutal Cyberpunk Pixel Glitch & Tear Transition */
-@keyframes pixel-dissolve {
+/* ========================================================================== */
+/* SCATTERED RGB HACKING GLITCH TRANSITION                                    */
+/* ========================================================================== */
+
+@keyframes rgb-slice-jitter {
   0% {
-    opacity: 1;
-    transform: scale(1) translate(0, 0);
+    transform: translateX(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translateX(-8px);
+    opacity: 0.85;
+    filter: drop-shadow(4px 0 #ff0055) drop-shadow(-4px 0 #00f0ff);
+  }
+  35% {
+    transform: translateX(10px);
+    opacity: 0.95;
+    filter: drop-shadow(-4px 0 #ff0055) drop-shadow(4px 0 #00f0ff);
+  }
+  60% {
+    transform: translateX(-5px);
+    opacity: 0.7;
+    filter: drop-shadow(3px 0 #39ff14) drop-shadow(-3px 0 #ff0055);
+  }
+  85% {
+    transform: translateX(2px);
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes rgb-pixel-scatter {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translate(0, 0);
   }
   20% {
-    transform: scale(1.04) translate(calc(var(--gx, 0) * 1px), calc(var(--gy, 0) * 1px));
-    background-color: #7ee7d6;
-    border-color: #ff4f9a;
+    opacity: 1;
+    transform: scale(1.15) translate(calc(var(--dx, 6) * 1px), calc(var(--dy, -4) * 1px));
+    filter: drop-shadow(-2px 0 #ff0055) drop-shadow(2px 0 #00f0ff);
   }
-  45% {
-    transform: scale(0.92) skew(8deg);
-    background-color: #ff4f9a;
-    border-color: #7ee7d6;
+  50% {
+    opacity: 0.85;
+    transform: scale(1) translate(calc(var(--dx, 6) * 1.6px), calc(var(--dy, -4) * 1.6px));
+    filter: drop-shadow(-3px 0 #00ff66) drop-shadow(3px 0 #ff0055);
   }
-  70% {
-    opacity: 0.7;
-    transform: scale(0.6) translate(calc(var(--gx, 0) * 2px), calc(var(--gy, 0) * 2px));
-    background-color: #0d1117;
+  80% {
+    opacity: 0.4;
+    transform: scale(0.75) translate(calc(var(--dx, 6) * 2.2px), calc(var(--dy, -4) * 2.2px));
+    filter: drop-shadow(-1px 0 #00f0ff) drop-shadow(1px 0 #ff0055);
   }
   100% {
     opacity: 0;
-    transform: scale(0) rotate(45deg);
+    transform: scale(0.2) translate(calc(var(--dx, 6) * 2.8px), calc(var(--dy, -4) * 2.8px));
   }
 }
 
-@keyframes brutal-screen-tear {
+@keyframes rgb-ambient-flash {
   0% {
-    clip-path: inset(0 0 0 0);
-    transform: translate(0, 0);
+    opacity: 0;
   }
   20% {
-    clip-path: inset(20% 0 45% 0);
-    transform: translate(-14px, 0);
+    opacity: 0.18;
   }
-  40% {
-    clip-path: inset(55% 0 15% 0);
-    transform: translate(18px, 0);
-  }
-  60% {
-    clip-path: inset(10% 0 65% 0);
-    transform: translate(-8px, 0);
-  }
-  80% {
-    clip-path: inset(40% 0 35% 0);
-    transform: translate(10px, 0);
+  50% {
+    opacity: 0.1;
   }
   100% {
-    clip-path: inset(0 0 0 0);
-    transform: translate(0, 0);
+    opacity: 0;
   }
 }
 
-.brutal-glitch-tear {
-  animation: brutal-screen-tear 0.4s steps(4) infinite;
+.rgb-glitch-slice {
+  animation: rgb-slice-jitter 0.65s steps(3) forwards;
 }
 
-.cyber-pixel-tile {
-  background-color: #000000;
-  border: 1px solid rgba(126, 231, 214, 0.08);
+.rgb-pixel-frag {
+  animation: rgb-pixel-scatter 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.cyber-pixel-tile.shattering {
-  animation: pixel-dissolve 0.75s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+.rgb-ambient-sweep {
+  animation: rgb-ambient-flash 0.8s ease-out forwards;
 }
 
 

@@ -8,6 +8,29 @@ interface CinematicIntroProps {
 
 type Phase = 'init' | 'reveal' | 'terminal_return' | 'graffiti' | 'transition';
 
+const RGB_SCAN_SLICES = [
+  { top: '22%', height: '2px', delay: '0.04s', bg: 'linear-gradient(90deg, transparent, #00f0ff 25%, #ff0055 75%, transparent)' },
+  { top: '48%', height: '3px', delay: '0.12s', bg: 'linear-gradient(90deg, transparent, #ff0055 30%, #39ff14 70%, transparent)' },
+  { top: '74%', height: '2px', delay: '0.20s', bg: 'linear-gradient(90deg, transparent, #00f0ff 35%, #ff0055 65%, transparent)' },
+];
+
+const SCATTERED_RGB_CLUSTERS = [
+  { top: '15%', left: '12%', delay: '0.03s', dx: -8, dy: 4, label: '0x7F', color: '#00f0ff', pixels: ['#00f0ff', '#ff0055', '#39ff14'] },
+  { top: '23%', left: '78%', delay: '0.11s', dx: 7, dy: -3, label: 'INIT_2026', color: '#ff0055', pixels: ['#ff0055', '#00f0ff', '#ff0055', '#39ff14'] },
+  { top: '36%', left: '26%', delay: '0.07s', dx: -5, dy: -5, color: '#39ff14', pixels: ['#39ff14', '#00f0ff', '#39ff14'] },
+  { top: '46%', left: '86%', delay: '0.16s', dx: 8, dy: 3, label: 'ACK', color: '#00f0ff', pixels: ['#00f0ff', '#ff0055'] },
+  { top: '61%', left: '18%', delay: '0.13s', dx: -7, dy: 5, color: '#ff0055', pixels: ['#ff0055', '#39ff14', '#00f0ff'] },
+  { top: '73%', left: '72%', delay: '0.09s', dx: 6, dy: -4, label: '0x9B', color: '#39ff14', pixels: ['#39ff14', '#ff0055', '#00f0ff'] },
+  { top: '82%', left: '32%', delay: '0.21s', dx: -6, dy: 4, color: '#00f0ff', pixels: ['#00f0ff', '#00f0ff', '#ff0055'] },
+  { top: '28%', left: '54%', delay: '0.15s', dx: 5, dy: 5, label: 'GIT//OK', color: '#ff0055', pixels: ['#ff0055', '#00f0ff'] },
+  { top: '67%', left: '46%', delay: '0.19s', dx: -7, dy: -3, color: '#00f0ff', pixels: ['#00f0ff', '#39ff14', '#ff0055'] },
+  { top: '17%', left: '44%', delay: '0.05s', dx: 4, dy: -3, color: '#39ff14', pixels: ['#39ff14', '#00f0ff'] },
+  { top: '54%', left: '70%', delay: '0.14s', dx: -5, dy: 4, label: 'DECODE', color: '#ff0055', pixels: ['#ff0055', '#39ff14'] },
+  { top: '86%', left: '80%', delay: '0.23s', dx: 6, dy: -4, color: '#00f0ff', pixels: ['#00f0ff', '#ff0055', '#00f0ff'] },
+  { top: '11%', left: '62%', delay: '0.10s', dx: -4, dy: 5, label: 'PORT:01', color: '#39ff14', pixels: ['#39ff14', '#ff0055'] },
+  { top: '41%', left: '9%', delay: '0.18s', dx: 6, dy: -3, color: '#ff0055', pixels: ['#ff0055', '#00f0ff', '#39ff14'] },
+];
+
 export function CinematicIntro({ onComplete, onSkip }: CinematicIntroProps) {
   const [phase, setPhase] = useState<Phase>('init');
   const [typedLines, setTypedLines] = useState<string[]>([]);
@@ -226,7 +249,7 @@ export function CinematicIntro({ onComplete, onSkip }: CinematicIntroProps) {
   return (
     <div
       className={`fixed inset-0 z-[99999] overflow-hidden bg-black select-none transition-opacity duration-700 ${
-        isFadingOut ? 'pointer-events-none' : 'opacity-100'
+        isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       {/* Scanline overlay only for terminal and ending phases - never over the clean video */}
@@ -394,36 +417,71 @@ export function CinematicIntro({ onComplete, onSkip }: CinematicIntroProps) {
       )}
 
       {/* ============================================================== */}
-      {/* BRUTAL CYBERPUNK PIXEL DISSOLVE & SCREEN TEAR OVERLAY          */}
+      {/* SCATTERED RGB HACKING GLITCH OVERLAY                           */}
       {/* ============================================================== */}
       {isFadingOut && (
         <div className="absolute inset-0 z-50 pointer-events-none overflow-hidden">
-          {/* Chromatic screen tear flashes */}
-          <div className="absolute inset-0 brutal-glitch-tear opacity-75 mix-blend-screen bg-gradient-to-b from-transparent via-[#7ee7d6]/25 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 brutal-glitch-tear opacity-50 mix-blend-screen bg-gradient-to-b from-transparent via-[#ff4f9a]/25 to-transparent pointer-events-none" style={{ animationDelay: '0.12s' }} />
+          {/* Subtle RGB ambient sweep flash */}
+          <div className="absolute inset-0 rgb-ambient-sweep bg-gradient-to-r from-[#ff0055]/15 via-[#00f0ff]/20 to-[#39ff14]/15 mix-blend-screen pointer-events-none" />
 
-          {/* Dissolving Cyber Pixel Matrix */}
-          <div className="absolute inset-0 grid grid-cols-8 sm:grid-cols-12 grid-rows-8 h-full w-full pointer-events-none">
-            {Array.from({ length: 96 }).map((_, i) => {
-              const row = Math.floor(i / 12);
-              const col = i % 12;
-              const delay = (col * 0.03 + row * 0.018 + (i % 7) * 0.03).toFixed(3);
-              const gx = ((i * 19) % 31) - 15;
-              const gy = ((i * 23) % 31) - 15;
-              return (
-                <div
-                  key={i}
-                  className="cyber-pixel-tile shattering w-full h-full"
+          {/* Thin horizontal RGB scan slices that jitter gently */}
+          {RGB_SCAN_SLICES.map((slice, i) => (
+            <div
+              key={i}
+              className="absolute left-0 right-0 rgb-glitch-slice pointer-events-none"
+              style={{
+                top: slice.top,
+                height: slice.height,
+                background: slice.bg,
+                animationDelay: slice.delay,
+              }}
+            />
+          ))}
+
+          {/* Scattered RGB pixel clusters and hacker fragments */}
+          {SCATTERED_RGB_CLUSTERS.map((cluster, i) => (
+            <div
+              key={i}
+              className="absolute rgb-pixel-frag pointer-events-none flex flex-col items-start gap-1"
+              style={{
+                top: cluster.top,
+                left: cluster.left,
+                animationDelay: cluster.delay,
+                // @ts-ignore
+                '--dx': cluster.dx,
+                '--dy': cluster.dy,
+              }}
+            >
+              {/* Micro RGB Pixel dots */}
+              <div className="flex items-center gap-0.5">
+                {cluster.pixels.map((col, pIdx) => (
+                  <span
+                    key={pIdx}
+                    className="inline-block w-1.5 h-1.5 rounded-[1px]"
+                    style={{
+                      backgroundColor: col,
+                      boxShadow: `0 0 5px ${col}`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Tiny Hacker Code Tag */}
+              {cluster.label && (
+                <span
+                  className="font-mono-custom text-[9px] tracking-widest px-1 py-0.5 rounded-xs border uppercase leading-none"
                   style={{
-                    animationDelay: `${delay}s`,
-                    // @ts-ignore
-                    '--gx': gx,
-                    '--gy': gy,
+                    color: cluster.color,
+                    borderColor: `${cluster.color}55`,
+                    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                    textShadow: `0 0 5px ${cluster.color}`,
                   }}
-                />
-              );
-            })}
-          </div>
+                >
+                  {cluster.label}
+                </span>
+              )}
+            </div>
+          ))}
         </div>
       )}
     </div>
